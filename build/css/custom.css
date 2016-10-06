@@ -1,0 +1,17 @@
+.main-content {
+  float: none;
+  margin: 0 auto;
+}
+
+.nav-searched-curved input {
+  border-radius: 20px;
+}
+
+.nav-searched-curved button {
+  border-radius: 20px;
+}
+
+.baby-blue-header {
+  background-color: #e6f9ff;
+}
+
