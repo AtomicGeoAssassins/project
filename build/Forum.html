@@ -28,21 +28,26 @@
           </button>
           <a class="navbar-brand" href="#">StarVestments</a>
         </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="index.html">Home</a></li>
-            <li class="active"><a href="#">Forum</a></li>
+            <li class="active"><a href="Forum.html">Forum</a></li>
             <li><a href="games.html">Games</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="support.html">Support</a></li>
           </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+          <div class="col-sm-3">
+            <form class="navbar-form" role="search">
+              <div class="input-group nav-searched-curved">
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Theo Proulx <span class="caret"></span></a>
@@ -64,12 +69,13 @@
               <div class="col-md-2 col-md-offset-1 frame-border">
                 <button class="btn" type="button">New Topic</button>
               </div>
-              <div class="col-md-3 pull-right" style="padding-top: 4px;">
+              <div class="col-md-4 col-md-offset-1 pull-right">
                 <input type="text" name="search" placeholder="Search forum...">
               </div>
+              <br>
               <div class="row">
                 <div class="col-md-10 col-md-offset-1 border">
-                  <div class="row topic-border title">
+                  <div class="row topic-border title baby-blue-header" style="border-right: 0px; border-top: 0px;">
                     Welcoming center
                   </div>
                   <div class="row">
@@ -83,7 +89,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           This is where you welcome new users to the forum, or write your own introduction so that others can get familiar with you.
@@ -91,7 +97,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="row topic-border title">
+                  <div class="row topic-border title baby-blue-header" style="border-right: 0px;">
                     General Discussion
                   </div>
                   <div class="row">
@@ -105,7 +111,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Discuss any topic you can think of with any users.
@@ -127,7 +133,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Predict what the next game to rise in popularity will be
@@ -149,7 +155,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Start a discussion with users about your favorite game
@@ -160,7 +166,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="row topic-border title">
+                  <div class="row topic-border title baby-blue-header" style="border-right: 0px;">
                     Support
                   </div>
                   <div class="row">
@@ -174,7 +180,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Ask the developers for help.
@@ -196,7 +202,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Ask the users for advice and strategies.
@@ -218,7 +224,7 @@
                         </li>
                       </ul>
                     </div>
-                    <div class="col-md-9 panel-body topic-border">
+                    <div class="col-md-9 panel-body topic-border" style="border-right: 0px;">
                       <ul style="list-style:none;">
                         <li>
                           Place your currently found bugs with the website here.
