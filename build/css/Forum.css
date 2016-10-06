@@ -20,8 +20,7 @@ input[type=text]:focus {
 }
 
 .topic-border {
-  border-top: 1px solid #000000;
-  border-right: 1px solid #000000;
+  border: 1px solid #000000; !important
 }
 
 .data {
@@ -34,8 +33,4 @@ input[type=text]:focus {
 
 .title {
   font-size: 20px;
-}
-
-.space {
-  padding-bottom: 3px;
 }
