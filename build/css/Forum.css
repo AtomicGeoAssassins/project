@@ -35,3 +35,7 @@ input[type=text]:focus {
 .title {
   font-size: 20px;
 }
+
+.space {
+  padding-bottom: 3px;
+}
