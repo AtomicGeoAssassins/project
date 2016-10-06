@@ -36,24 +36,28 @@
             <li><a href="about.html">About</a></li>
             <li><a href="support.html">Support</a></li>
             <!--<li class="dropdown">-->
-              <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-              <!--<ul class="dropdown-menu">-->
-                <!--<li><a href="#">Action</a></li>-->
-                <!--<li><a href="#">Another action</a></li>-->
-                <!--<li><a href="#">Something else here</a></li>-->
-                <!--<li role="separator" class="divider"></li>-->
-                <!--<li><a href="#">Separated link</a></li>-->
-                <!--<li role="separator" class="divider"></li>-->
-                <!--<li><a href="#">One more separated link</a></li>-->
-              <!--</ul>-->
+            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+            <!--<ul class="dropdown-menu">-->
+            <!--<li><a href="#">Action</a></li>-->
+            <!--<li><a href="#">Another action</a></li>-->
+            <!--<li><a href="#">Something else here</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="#">Separated link</a></li>-->
+            <!--<li role="separator" class="divider"></li>-->
+            <!--<li><a href="#">One more separated link</a></li>-->
+            <!--</ul>-->
             <!--</li>-->
           </ul>
-          <form class="navbar-form navbar-left">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+          <div class="col-sm-3">
+            <form class="navbar-form" role="search">
+              <div class="input-group nav-searched-curved">
+                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+            </form>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Theo Proulx <span class="caret"></span></a>
@@ -71,7 +75,68 @@
     </nav>
     <div class="main-content">
       <div class="col-md-8 col-md-offset-2">
-        page content here
+        <h2>Most Popular Games</h2>
+        <table class="table table-hover">
+          <thead class="baby-blue-header">
+            <tr>
+              <th>Game</th>
+              <th>Tomorrow's Price</th>
+              <th>Yesterday's Price</th>
+              <th>Last Month's Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Codename Keystone Racing&trade;</td>
+              <td>$4.99</td>
+              <td>$8.99</td>
+              <td>$20.99</td>
+            </tr>
+            <tr>
+              <td>Dog Duty 4&trade;</td>
+              <td>$4.99</td>
+              <td>$8.99</td>
+              <td>$20.99</td>
+            </tr>
+            <tr>
+              <td>Deer Counter Attack: The Prelude&trade;</td>
+              <td>$49.99</td>
+              <td>$49.99</td>
+              <td>$49.99</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>Highest Priced Games</h2>
+        <table class="table table-hover">
+          <thead class="baby-blue-header">
+            <tr>
+              <th>Game</th>
+              <th>Tomorrow's Price</th>
+              <th>Yesterday's Price</th>
+              <th>Last Month's Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Action Packed Smash Smasher&trade;</td>
+              <td>$110.99</td>
+              <td>$99.99</td>
+              <td>$20.99</td>
+            </tr>
+            <tr>
+              <td>Block MAADDDNESS 2k16&trade;</td>
+              <td>$699.99</td>
+              <td>$34.99</td>
+              <td>$1.99</td>
+            </tr>
+            <tr>
+              <td>Big Bob's Deer Huntin' 4&trade;</td>
+              <td>$299.99</td>
+              <td>$107.42</td>
+              <td>$20.99</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
