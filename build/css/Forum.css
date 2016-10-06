@@ -4,20 +4,46 @@
     transition: width 0.4s ease-in-out;
 }
 
-.border {
-  border: 2px solid #000000;
+.topborder {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid #000000;
   text-align: center;
 }
 
 .forum-border{
-  border: 1px solid #000000;
-  font-size: 15px;
+  font-size: 20px;
+  text-align: center;
 }
 
-.topic-border {
-  border: 1px solid #000000;
+.topic-border-left {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
   border-bottom: 1px solid #000000;
   height: 81px;
+  text-align: center;
+}
+
+.topic-border-right {
+  border-right: 1px solid black;
+  border-bottom: 1px solid #000000;
+  height: 81px;
+  text-align: center;
+}
+.radiusright {
+  border-bottom-right-radius: 20px;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  height: 81px;
+  text-align: center;
+}
+
+.radiusleft {
+  border-bottom-left-radius: 20px;
+  height: 81px;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   text-align: center;
 }
 
@@ -32,16 +58,18 @@
 .titles {
   font-size: 20px;
   border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-left: 1px solid #000000;
+  border-right: 1px solid #000000;
+  text-align: center;
 }
 
-.midtitle {
-  border-top: 1px solid black;
-}
-
-.space {
+.spacesearch {
   padding-bottom: 10px;
+}
+
+.spacetopic {
+  padding-top: 8px;
+  padding-bottom: 4px:
 }
 
 .topspace{
