@@ -6,33 +6,34 @@ export default class Home extends React.Component {
     this.state = {
       contents: []
     };
+    getGameData((games) => {
+      this.setState({ "games": games });
+    });
   }
 
- /* refresh() {
+  refresh() {
     getGameData((games) => {
       this.setState(games);
     });
   }
-*/
 
   render() {
-
-    /*
-    popularGames = (
+    
+    var popularGames = (
       { 
-        games.map(game => {
+        games.map((game) => {
           return (
             <tr>
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
-              <td>{}</td>
+              <td>{game.title}</td>
+              <td>{game.beforePrice}</td>
+              <td>{game.currentPrice}</td>
+              <td>{game.futurePrice}</td>
             </tr>
           )
         });
       }
-    );*/
-
+    );
+    
     return (
     <div>
       <h2>Most Popular Games</h2>
@@ -40,9 +41,9 @@ export default class Home extends React.Component {
         <thead className="baby-blue-header">
           <tr>
             <th>Game</th>
-            <th>Tomorrow's Price</th>
             <th>Yesterday's Price</th>
-            <th>Last Month's Price</th>
+            <th>Today's Price</th>
+            <th>Tomorrow's Price</th>
           </tr>
         </thead>
         <tbody>
@@ -71,9 +72,9 @@ export default class Home extends React.Component {
         <thead className="baby-blue-header">
           <tr>
             <th>Game</th>
-            <th>Tomorrow's Price</th>
             <th>Yesterday's Price</th>
-            <th>Last Month's Price</th>
+            <th>Today's Price</th>
+            <th>Tomorrow's Price</th>
           </tr>
         </thead>
         <tbody>
