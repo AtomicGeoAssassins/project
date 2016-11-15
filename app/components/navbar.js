@@ -23,10 +23,10 @@ export default class Navbar extends React.Component {
 
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
-            <li className="active"><a href="index.html">Home</a></li>
+            <li className="active"><Link to="/">Home</Link></li>
             <li><a href="Forum.html">Forum</a></li>
             <li><a href="games.html">Games</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><Link to="/about/">About</Link></li>
             <li><a href="support.html">Support</a></li>
           </ul>
           <div id='searchbar' className="col-sm-3">

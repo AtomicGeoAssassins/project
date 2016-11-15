@@ -52,9 +52,9 @@ export default class Home extends React.Component {
     
     return (
     <div>
-    <Link to="/about/">
-        about page
-    </Link> 
+      <Link to="/about/">
+          about page
+      </Link> 
       <h2>Most Popular Games</h2>
       <table className="table table-hover">
         <thead className="baby-blue-header">
