@@ -6,7 +6,40 @@ var startupName = AtomicGeoAssassins;
 
 // Put your mock objects here, as in Workshop 4
 var initialData = {
-
+  "games": {
+    "1": {
+      "_id": 1,
+      "title": "Fake Game 1",
+      "beforePrice": "4.99",
+      "currentPrice": "4.99",
+      "futurePrice": "4.99",
+      "steamLink": 1
+    },
+    "2": {
+      "_id": 1,
+      "title": "Fake Game 2",
+      "beforePrice": "4.99",
+      "currentPrice": "4.99",
+      "futurePrice": "4.99",
+      "steamLink": 1
+    },
+    "3": {
+      "_id": 1,
+      "title": "Fake Game 1",
+      "beforePrice": "4.99",
+      "currentPrice": "4.99",
+      "futurePrice": "4.99",
+      "steamLink": 1
+    },
+    "4": {
+      "_id": 1,
+      "title": "Fake Game 1",
+      "beforePrice": "4.99",
+      "currentPrice": "4.99",
+      "futurePrice": "4.99",
+      "steamLink": 1
+    }
+  }
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
