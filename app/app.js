@@ -21,7 +21,12 @@ class AboutPage extends React.Component {
 class App extends React.Component {
   render() {
     return (
-      <div>{this.props.children}</div>
+      <div>
+        <Navbar />
+        <div className="main-content container">
+          {this.props.children}
+        </div>
+      </div>
     )
   }
 }
@@ -29,16 +34,17 @@ class App extends React.Component {
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={HomePage}>
+    <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
+      <Route path="about" component={About} />
+      <Route path="home" component={HomePage} />
     </Route>
-    <Route path="about" component={About} />
   </Router>
 ),document.getElementById('main-content'));
 
-ReactDOM.render((
-  <Navbar />
-),document.getElementById('navbar'));
+//ReactDOM.render((
+  //<Navbar />
+//),document.getElementById('navbar'));
 
 //ReactDOM.render((
   //<Searchbar />
