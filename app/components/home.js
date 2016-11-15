@@ -26,7 +26,7 @@ export default class Home extends React.Component {
         this.state.games.map((game,i) => {
           return (
             <tr key={"line"+i}>
-              <td>{<a href="graph.js"> game.title </a>}</td>
+              <td>{game.title}</td>
               <td>{game.beforePrice}</td>
               <td>{game.currentPrice}</td>
               <td>{game.futurePrice}</td>
