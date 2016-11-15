@@ -3,6 +3,13 @@
   margin: 0 auto;
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
 .nav-searched-curved input {
   border-radius: 20px;
 }
@@ -13,4 +20,12 @@
 
 .baby-blue-header {
   background-color: #e6f9ff;
+}
+
+.aboutm {
+  style="width:600px;height:200px;border:1px solid #000;";
+}
+
+.imgUmass {
+  width="30%";
 }

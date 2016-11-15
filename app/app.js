@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Searchbar from './components/searchbar.js'
+//import Feed from './components/feed';
 import Home from './components/home';
 import Support from './components/support';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
@@ -34,3 +36,7 @@ ReactDOM.render((
     <Route path="support" component={SupportPage}/>
   </Router>
 ),document.getElementById('main-content'));
+
+ReactDOM.render((
+  <Searchbar />
+),document.getElementById('searchbar'));
