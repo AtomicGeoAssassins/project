@@ -25,7 +25,7 @@ var initialData = {
     },
     {
       "_id": 1,
-      "title": "Fake Game 1",
+      "title": "Fake Game 3",
       "beforePrice": "4.99",
       "currentPrice": "4.99",
       "futurePrice": "4.99",
@@ -33,7 +33,7 @@ var initialData = {
     },
     {
       "_id": 1,
-      "title": "Fake Game 1",
+      "title": "Fake Game 4",
       "beforePrice": "4.99",
       "currentPrice": "4.99",
       "futurePrice": "4.99",
