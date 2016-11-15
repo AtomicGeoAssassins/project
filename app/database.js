@@ -6,7 +6,87 @@ var startupName = AtomicGeoAssassins;
 
 // Put your mock objects here, as in Workshop 4
 var initialData = {
-
+  "users":{
+      "1":
+      {
+        "userName": "Temp1",
+        "bio": "Hi! My name is Temp1!",
+        "eMail": "temp1@gmail.com",
+        "steamAccount": "tempOne",
+        "companyName": "Team123",
+      }
+      "2":
+      {
+        "userName": "Temp2",
+        "bio": "Hi! My name is Temp2!",
+        "eMail": "temp2@gmail.com",
+        "steamAccount": "tempTwo",
+        "companyName": "Team123",
+      }
+      "3":
+      {
+        "userName": "Temp3",
+        "bio": "Hi! My name is Temp3!",
+        "eMail": "temp3@gmail.com",
+        "steamAccount": "tempThree",
+        "companyName": "Team123",
+      }
+      "4":
+      {
+        "userName": "Temp4",
+        "bio": "Hi! My name is Temp4!",
+        "eMail": "temp4@gmail.com",
+        "steamAccount": "tempFour",
+        "companyName": "Team123",
+      }
+      "5":
+      {
+        "userName": "Temp5",
+        "bio": "Hi! My name is Temp5!",
+        "eMail": "temp5@gmail.com",
+        "steamAccount": "tempFive",
+        "companyName": "Team123",
+      }
+      "6":
+      {
+        "userName": "Temp6",
+        "bio": "Hi! My name is Temp6!",
+        "eMail": "temp6@gmail.com",
+        "steamAccount": "tempSix",
+        "companyName": "Team123",
+      }
+      "7":
+      {
+        "userName": "Temp7",
+        "bio": "Hi! My name is Temp7!",
+        "eMail": "temp7@gmail.com",
+        "steamAccount": "tempSeven",
+        "companyName": "Team123",
+      }
+      "8":
+      {
+        "userName": "Temp8",
+        "bio": "Hi! My name is Temp8!",
+        "eMail": "temp8@gmail.com",
+        "steamAccount": "tempEight",
+        "companyName": "Team123",
+      }
+      "9":
+      {
+        "userName": "Temp9",
+        "bio": "Hi! My name is Temp9!",
+        "eMail": "temp9@gmail.com",
+        "steamAccount": "tempNine",
+        "companyName": "Team123",
+      }
+      "10":
+      {
+        "userName": "Temp10",
+        "bio": "Hi! My name is Temp10!",
+        "eMail": "temp10@gmail.com",
+        "steamAccount": "tempTen",
+        "companyName": "Team123",
+      }
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
