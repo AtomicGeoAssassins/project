@@ -1,4 +1,5 @@
 import React from 'react';
+import {getGameData} from '../server';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -6,7 +7,32 @@ export default class Home extends React.Component {
       contents: []
     };
   }
+
+ /* refresh() {
+    getGameData((games) => {
+      this.setState(games);
+    });
+  }
+*/
+
   render() {
+
+    /*
+    popularGames = (
+      { 
+        games.map(game => {
+          return (
+            <tr>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{}</td>
+              <td>{}</td>
+            </tr>
+          )
+        });
+      }
+    );*/
+
     return (
     <div>
       <h2>Most Popular Games</h2>
