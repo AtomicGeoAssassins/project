@@ -39,11 +39,8 @@ ReactDOM.render((
     <Route path="/" component={HomePage}>
       <IndexRoute component={HomePage} />
     </Route>
-<<<<<<< HEAD
     <Route path="support" component={SupportPage}/>
-=======
     <Route path="about" component={About} />
->>>>>>> 52d3e29b9145c6114ea499c9eae29d0ed7a60bea
   </Router>
 ),document.getElementById('main-content'));
 
