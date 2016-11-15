@@ -12,11 +12,11 @@ export default class Support extends React.Component {
         <h2>Support</h2>
         <div className="padding">s
           <label htmlFor="titletext">Title:</label>
-          <input className="form-control" type="text" rows="1" id="titletext" style="width:50%" placeholder="Enter a title"/>
+          <input className="form-control" type="text" rows="1" id="titletext" placeholder="Enter a title"/>
         </div>
         <div className="padding">
           <label htmlFor="desctext">Description:</label>
-          <textarea className="form-control" type="text" rows="6" id="desctext" style="width:100%" placeholder="Describe your problem in detail"></textarea>
+          <textarea className="form-control" type="text" rows="6" id="desctext" placeholder="Describe your problem in detail"></textarea>
         </div>
         <div className="right-align padding">
           <button className="btn btn-default">

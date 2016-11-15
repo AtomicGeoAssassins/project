@@ -20,7 +20,7 @@ export default class Navbar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">StarVestments</a>
+            <Link className="navbar-brand" to="/home/">StarVestments</Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

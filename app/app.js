@@ -7,12 +7,6 @@ import Navbar from './components/navbar';
 import About from './components/about';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
-class HomePage extends React.Component {
-  render() {
-    return <Home />;
-  }
-}
-
 class AboutPage extends React.Component {
   render() {
     return <About /> ;
@@ -42,10 +36,10 @@ class App extends React.Component {
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={HomePage} />
+      <IndexRoute component={Home} />
       <Route path="about" component={About} />
-      <Route path="home" component={HomePage} />
       <Route path="support" component={Support}/>
+      <Route path="home" component={Home} />
     </Route>
   </Router>
 ),document.getElementById('main-content'));
