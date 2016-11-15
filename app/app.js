@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Searchbar from './components/searchbar.js'
-//import Feed from './components/feed';
 import Home from './components/home';
+import Navbar from './components/navbar';
+import About from './components/about';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 class HomePage extends React.Component {
   render() {
-    return <Home /> ;
+    return <Home />;
+  }
+}
+
+class AboutPage extends React.Component {
+  render() {
+    return <About /> ;
   }
 }
 
@@ -22,13 +29,18 @@ class App extends React.Component {
 
 ReactDOM.render((
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
-      {/* Show the Feed at / */}
+    <Route path="/" component={HomePage}>
       <IndexRoute component={HomePage} />
     </Route>
+    <Route path="about" component={About} />
   </Router>
 ),document.getElementById('main-content'));
 
 ReactDOM.render((
-  <Searchbar />
-),document.getElementById('searchbar'));
+  <Navbar />
+),document.getElementById('navbar'));
+
+//ReactDOM.render((
+  //<Searchbar />
+//),document.getElementById('searchbar'));
+
