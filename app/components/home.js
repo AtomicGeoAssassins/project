@@ -48,7 +48,7 @@ export default class Home extends React.Component {
         })
       );
     }
-    
+
     return (
     <div>
       <h2>Most Popular Games</h2>
