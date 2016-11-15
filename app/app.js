@@ -45,7 +45,7 @@ ReactDOM.render((
       <IndexRoute component={HomePage} />
       <Route path="about" component={About} />
       <Route path="home" component={HomePage} />
-      <Route path="support" component={SupportPage}/>
+      <Route path="support" component={Support}/>
     </Route>
   </Router>
 ),document.getElementById('main-content'));
