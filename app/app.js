@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import Feed from './components/feed';
+import Home from './components/home';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 class HomePage extends React.Component {
   render() {
-    return (<p> alpaca </p>) ;
+    return <Home /> ;
   }
 }
 
