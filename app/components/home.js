@@ -49,7 +49,7 @@ export default class Home extends React.Component {
         })
       );
     }
-    
+
     return (
     <div>
       <Link to="/about/">
