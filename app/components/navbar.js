@@ -9,6 +9,14 @@ export default class Navbar extends React.Component {
     };
   }
 
+  updateActiveLink(index) {
+    $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
+    if(index === 0)
+      $("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
+    else
+      $("#mainNavLinks li:nth-child(" + index +")").addClass("active"); //add active class to the caller
+  }
+
   render() {
     return (
     <div>
@@ -21,15 +29,15 @@ export default class Navbar extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <Link className="navbar-brand" to="/home/">StarVestments</Link>
+            <Link id="homeLinkMain" className="navbar-brand" to="/home/" onClick={this.updateActiveLink.bind(this,0)}>StarVestments</Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul className="nav navbar-nav">
-              <li className="active"><Link to="/">Home</Link></li>
-              <li><Link to="/games">Games</Link></li>
-              <li><Link to="/about/">About</Link></li>
-              <li><Link to="/support/">Support</Link></li>
+            <ul className="nav navbar-nav" id="mainNavLinks">
+              <li className=""><Link to="/" onClick={this.updateActiveLink.bind(this,1)}>Home</Link></li>
+              <li><Link to="/games" onClick={this.updateActiveLink.bind(this,2)}>Games</Link></li>
+              <li><Link to="/about/" onClick={this.updateActiveLink.bind(this,3)}>About</Link></li>
+              <li><Link to="/support/" onClick={this.updateActiveLink.bind(this,4)}>Support</Link></li>
             </ul>
             <div id='searchbar' className="col-sm-3">
               <Searchbar />
