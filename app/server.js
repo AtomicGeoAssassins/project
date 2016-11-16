@@ -15,20 +15,7 @@ export function getGameData(cb) {
   emulateServerReturn(gameData, cb);
 }
 
-export function createProfile(img, userName, bio, eMail, steamName, companyName)
-{
-  var newStatusUpdate =
-  {
-      "likeCounter": [],
-      "type": "statusUpdate",
-      "contents": {
-        "image": img,
-        "user": userName,
-        "postDate": time,
-        "location": location,
-        "contents": contents
-      },
-      // List of comments on the post
-      "comments": []
-  };
+export function getUserData(cb) {
+  var userData = readEntireDocument('users');
+  emulateServerReturn(userData, cb);
 }
