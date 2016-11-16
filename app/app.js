@@ -4,7 +4,7 @@ import Home from './components/home';
 import Navbar from './components/navbar';
 import Searchresults from './components/searchresults';
 import About from './components/about';
-import { IndexRoute, Router, Route, browserHistory } from 'react-router';
+import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 
 class App extends React.Component {
   render() {
@@ -20,7 +20,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render((
-  <Router history={browserHistory}>
+  <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
