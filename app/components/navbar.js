@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {Link, hashHistory} from 'react-router';
 import Searchbar from './searchbar.js'
 export default class Navbar extends React.Component {
   constructor(props) {
