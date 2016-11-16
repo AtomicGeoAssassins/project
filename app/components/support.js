@@ -27,7 +27,7 @@ export default class Support extends React.Component {
               document.getElementById("desctext").value = "";
               document.getElementById("result").innerHTML = "Submitted";
               alert("Support request sent.");
-              window.open("mailto:" + "starvestmentssupport@gmail.com" + "?subject" + title + "?body" + description);
+              window.open("mailto:" + "starvestment@gmail.com" + "?subject" + title + "?body" + description);
           }}>Submit</Link>
         </div>
         <label type="text" id="result"></label>
