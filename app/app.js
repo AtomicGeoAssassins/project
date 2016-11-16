@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Home from './components/home';
+import Support from './components/support';
 import Navbar from './components/navbar';
 import Searchresults from './components/searchresults';
 import About from './components/about';
@@ -24,6 +25,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
+      <Route path="support" component={Support}/>
       <Route path="home" component={Home} />
       <Route path="searchresults" component={Searchresults} />
     </Route>
@@ -37,4 +39,3 @@ ReactDOM.render((
 //ReactDOM.render((
   //<Searchbar />
 //),document.getElementById('searchbar'));
-
