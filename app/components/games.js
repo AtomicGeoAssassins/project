@@ -1,5 +1,11 @@
 import React from 'react';
 export default class Games extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      contents: []
+    };
+  }
   render(){
     return(
       <div className="main-content">
