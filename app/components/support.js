@@ -21,10 +21,13 @@ export default class Support extends React.Component {
         </div>
         <div className="right-align padding">
           <Link to="/home" className="btn btn-default" type="button" onClick={() => {
+              var title = document.getElementById("titletext").value;
+              var description = document.getElementById("desctext").value
               document.getElementById("titletext").value = "";
               document.getElementById("desctext").value = "";
               document.getElementById("result").innerHTML = "Submitted";
-              // here is where we would send an email if this was a real website //
+              alert("Support request sent.");
+              window.open("mailto:" + "starvestmentssupport@gmail.com" + "?subject" + title + "?body" + description);
           }}>Submit</Link>
         </div>
         <label type="text" id="result"></label>
