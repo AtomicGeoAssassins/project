@@ -16,28 +16,36 @@ var initialData = {
       "steamLink": 1
     },
     {
-      "_id": 1,
+      "_id": 2,
       "title": "Fake Game 2",
       "beforePrice": "4.99",
       "currentPrice": "4.99",
       "futurePrice": "4.99",
-      "steamLink": 1
+      "steamLink": 2
     },
     {
-      "_id": 1,
+      "_id": 3,
       "title": "Fake Game 3",
       "beforePrice": "4.99",
       "currentPrice": "4.99",
       "futurePrice": "4.99",
-      "steamLink": 1
+      "steamLink": 3
     },
     {
-      "_id": 1,
+      "_id": 4,
       "title": "Fake Game 4",
       "beforePrice": "4.99",
       "currentPrice": "4.99",
       "futurePrice": "4.99",
-      "steamLink": 1
+      "steamLink": 4
+    },
+    {
+      "_id": 5,
+      "title": "Fake Game 5",
+      "beforePrice": "4.99",
+      "currentPrice": "4.99",
+      "futurePrice": "4.99",
+      "steamLink": 5
     }
   ],
   "users":{
