@@ -5,7 +5,7 @@ import Support from './components/support';
 import Navbar from './components/navbar';
 import Searchresults from './components/searchresults';
 import About from './components/about';
-import MyProfile  from './components/MyProfile'
+import MyProfile  from './components/myprofile'
 import { IndexRoute, Router, Route, hashHistory } from 'react-router';
 
 class App extends React.Component {
@@ -28,7 +28,7 @@ ReactDOM.render((
       <Route path="about" component={About} />
       <Route path="support" component={Support}/>
       <Route path="home" component={Home} />
-      <Route path="myProfile" component={MyProfile} />
+      <Route path="myprofile" component={MyProfile} />
       <Route path="searchresults" component={Searchresults} />
     </Route>
   </Router>
