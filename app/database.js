@@ -55,7 +55,8 @@ var initialData = {
         "bio": "Hi! My name is Temp1!",
         "eMail": "temp1@gmail.com",
         "steamAccount": "tempOne",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "2":
       {
@@ -63,7 +64,8 @@ var initialData = {
         "bio": "Hi! My name is Temp2!",
         "eMail": "temp2@gmail.com",
         "steamAccount": "tempTwo",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "3":
       {
@@ -71,7 +73,8 @@ var initialData = {
         "bio": "Hi! My name is Temp3!",
         "eMail": "temp3@gmail.com",
         "steamAccount": "tempThree",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "4":
       {
@@ -79,7 +82,8 @@ var initialData = {
         "bio": "Hi! My name is Temp4!",
         "eMail": "temp4@gmail.com",
         "steamAccount": "tempFour",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "5":
       {
@@ -87,7 +91,8 @@ var initialData = {
         "bio": "Hi! My name is Temp5!",
         "eMail": "temp5@gmail.com",
         "steamAccount": "tempFive",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "6":
       {
@@ -95,7 +100,8 @@ var initialData = {
         "bio": "Hi! My name is Temp6!",
         "eMail": "temp6@gmail.com",
         "steamAccount": "tempSix",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "7":
       {
@@ -103,7 +109,8 @@ var initialData = {
         "bio": "Hi! My name is Temp7!",
         "eMail": "temp7@gmail.com",
         "steamAccount": "tempSeven",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "8":
       {
@@ -111,7 +118,8 @@ var initialData = {
         "bio": "Hi! My name is Temp8!",
         "eMail": "temp8@gmail.com",
         "steamAccount": "tempEight",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "9":
       {
@@ -119,7 +127,8 @@ var initialData = {
         "bio": "Hi! My name is Temp9!",
         "eMail": "temp9@gmail.com",
         "steamAccount": "tempNine",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "10":
       {
@@ -127,7 +136,8 @@ var initialData = {
         "bio": "Hi! My name is Temp10!",
         "eMail": "temp10@gmail.com",
         "steamAccount": "tempTen",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       }
   }
 };
