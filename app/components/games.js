@@ -1,8 +1,10 @@
 import React from 'react';
 import {getGameData} from '../server';
+import {setActiveNavLink} from '../server';
 export default class Games extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("Games");
     this.state = {
       contents: []
     };

@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router';
+import {setActiveNavLink} from '../server';
 export default class Support extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("Support");
     this.state = {
       contents: []
     };
