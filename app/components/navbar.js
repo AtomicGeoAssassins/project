@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Searchbar from './searchbar.js'
 export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +32,7 @@ export default class Navbar extends React.Component {
               <li><Link to="/support/">Support</Link></li>
             </ul>
             <div id='searchbar' className="col-sm-3">
+              <Searchbar />
             </div>
             <ul className="nav navbar-nav navbar-right">
               <li className="dropdown">
