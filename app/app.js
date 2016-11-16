@@ -7,18 +7,6 @@ import Navbar from './components/navbar';
 import About from './components/about';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
-class AboutPage extends React.Component {
-  render() {
-    return <About /> ;
-  }
-}
-
-class SupportPage extends React.Component {
-  render() {
-    return <Support />;
-  }
-}
-
 class App extends React.Component {
   render() {
     return (
