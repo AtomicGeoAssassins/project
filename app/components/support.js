@@ -22,18 +22,21 @@ export default class Support extends React.Component {
         <div className="right-align padding">
           <button to="/home" className="btn btn-default" type="button" onClick={() => {
               var title = document.getElementById("titletext").value;
-              var description = document.getElementById("desctext").value
+              var description = document.getElementById("desctext").value;
               document.getElementById("titletext").value = "";
               document.getElementById("desctext").value = "";
               document.getElementById("result").innerHTML = "Submitted";
               window.open("mailto:" + "starvestment@gmail.com" + "?subject" + title + "?body" + description);
           }}>Submit</button>
-        <br/>
-        <Link to="/home" >
-          Return to Home
-        </Link>
         </div>
         <label type="text" id="result"></label>
+        <br/>
+        <br/>
+        <div>
+          <Link to="/home" >
+            Return to Home
+          </Link>
+        </div>
       </div>
     );
   }
