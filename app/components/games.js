@@ -33,8 +33,8 @@ export default class Games extends React.Component {
       );
     }
     return(
-      <div className="main-content">
-        <div className="col-md-8 col-md-offset-2">
+      <div>
+        <div>
           <h2>List of Games</h2>
           <table className="table table-hover">
             <thead className="baby-blue-header">
