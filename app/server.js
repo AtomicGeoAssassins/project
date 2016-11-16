@@ -15,6 +15,11 @@ export function getGameData(cb) {
   emulateServerReturn(gameData, cb);
 }
 
+export function getUserData(cb) {
+  var userData = readEntireDocument('users');
+  emulateServerReturn(userData, cb);
+}
+
 export function createProfile(img, userName, bio, eMail, steamName, companyName)
 {
   var newStatusUpdate =
