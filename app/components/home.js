@@ -1,11 +1,12 @@
 import React from 'react';
-import {getGameData} from '../server';
+import {getGameData, setActiveNavLink} from '../server';
 import {Link} from 'react-router';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("Home");
     this.state = {
-      contents: []
+      page: "home"
     };
   }
 
