@@ -9,7 +9,7 @@ export default class Searchresults extends React.Component {
   }
   render() {
     return (
-      albatross!
+      <p>albatross!</p>
     )
   }
 }
