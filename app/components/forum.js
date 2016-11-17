@@ -1,10 +1,11 @@
 import React from 'react';
-import {getForumData} from '../server';
+import {getForumData, setActiveNavLink} from '../server';
 import {Link} from 'react-router';
 
-export default class Home extends React.Component {
+export default class Forum extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("Forum");
     this.state = {
       contents: []
     };
