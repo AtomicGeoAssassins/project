@@ -10,42 +10,89 @@ var initialData = {
     {
       "_id": 1,
       "title": "Fake Game 1",
-      "beforePrice": "4.99",
-      "currentPrice": "4.99",
-      "futurePrice": "4.99",
+      "beforePrice": "59.99",
+      "currentPrice": "49.99",
+      "futurePrice": "39.99",
       "steamLink": 1
     },
     {
       "_id": 2,
       "title": "Fake Game 2",
-      "beforePrice": "4.99",
-      "currentPrice": "4.99",
-      "futurePrice": "4.99",
+      "beforePrice": "9.99",
+      "currentPrice": "7.99",
+      "futurePrice": "5.99",
       "steamLink": 2
     },
     {
       "_id": 3,
       "title": "Fake Game 3",
-      "beforePrice": "4.99",
-      "currentPrice": "4.99",
-      "futurePrice": "4.99",
+      "beforePrice": "19.99",
+      "currentPrice": "14.99",
+      "futurePrice": "9.99",
       "steamLink": 3
     },
     {
       "_id": 4,
       "title": "Fake Game 4",
-      "beforePrice": "4.99",
-      "currentPrice": "4.99",
+      "beforePrice": "14.99",
+      "currentPrice": "9.99",
       "futurePrice": "4.99",
       "steamLink": 4
     },
     {
       "_id": 5,
       "title": "Fake Game 5",
-      "beforePrice": "4.99",
-      "currentPrice": "4.99",
-      "futurePrice": "4.99",
+      "beforePrice": "3.99",
+      "currentPrice": "2.99",
+      "futurePrice": "1.99",
       "steamLink": 5
+    }
+  ],
+  "forum": [
+    {
+      "_id": 1,
+      "title": "Jimmy Carter",
+      "postTitle": "Welcome",
+      "insideData": "Hello, i was one of the presidents, i may be old now but im still effective",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 2,
+      "title": "Eric Johnson",
+      "postTitle": "Workshop 5",
+      "insideData": "I dont even know what im doing here",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 3,
+      "title": "William Shakespeare",
+      "postTitle": "New game for sale",
+      "insideData": "Selling call of duty modern warfare 7 for 29.99",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 4,
+      "title": "Theo Cortez",
+      "postTitle": "Games page not loading",
+      "insideData": "For some reason during the page load, my computer updates from linux to fedora",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 5,
+      "title": "Tom Peck",
+      "postTitle": "I need money",
+      "insideData": "Hey I gambled all of my money away",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
     }
   ],
   "users":{
@@ -55,7 +102,8 @@ var initialData = {
         "bio": "Hi! My name is Temp1!",
         "eMail": "temp1@gmail.com",
         "steamAccount": "tempOne",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "2":
       {
@@ -63,7 +111,8 @@ var initialData = {
         "bio": "Hi! My name is Temp2!",
         "eMail": "temp2@gmail.com",
         "steamAccount": "tempTwo",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "3":
       {
@@ -71,7 +120,8 @@ var initialData = {
         "bio": "Hi! My name is Temp3!",
         "eMail": "temp3@gmail.com",
         "steamAccount": "tempThree",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "4":
       {
@@ -79,7 +129,8 @@ var initialData = {
         "bio": "Hi! My name is Temp4!",
         "eMail": "temp4@gmail.com",
         "steamAccount": "tempFour",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "5":
       {
@@ -87,7 +138,8 @@ var initialData = {
         "bio": "Hi! My name is Temp5!",
         "eMail": "temp5@gmail.com",
         "steamAccount": "tempFive",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "6":
       {
@@ -95,7 +147,8 @@ var initialData = {
         "bio": "Hi! My name is Temp6!",
         "eMail": "temp6@gmail.com",
         "steamAccount": "tempSix",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "7":
       {
@@ -103,7 +156,8 @@ var initialData = {
         "bio": "Hi! My name is Temp7!",
         "eMail": "temp7@gmail.com",
         "steamAccount": "tempSeven",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "8":
       {
@@ -111,7 +165,8 @@ var initialData = {
         "bio": "Hi! My name is Temp8!",
         "eMail": "temp8@gmail.com",
         "steamAccount": "tempEight",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "9":
       {
@@ -119,7 +174,8 @@ var initialData = {
         "bio": "Hi! My name is Temp9!",
         "eMail": "temp9@gmail.com",
         "steamAccount": "tempNine",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       },
     "10":
       {
@@ -127,7 +183,8 @@ var initialData = {
         "bio": "Hi! My name is Temp10!",
         "eMail": "temp10@gmail.com",
         "steamAccount": "tempTen",
-        "companyName": "Team123"
+        "companyName": "Team123",
+        "watchList": [1,2,3]
       }
   }
 };

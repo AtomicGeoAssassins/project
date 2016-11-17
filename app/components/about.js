@@ -1,7 +1,9 @@
 import React from 'react';
+import {setActiveNavLink} from '../server';
 export default class About extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("About");
     this.state = {
       contents: []
     };
