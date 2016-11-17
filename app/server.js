@@ -37,7 +37,7 @@ export function getForumData(cb) {
   emulateServerReturn(forumData, cb);
 }
 
-export function getUserData(cb) {
-  var userData = readEntireDocument('users');
-  emulateServerReturn(userData, cb);
-}
+//export function getUserData(cb) {
+  //var userData = readEntireDocument('users');
+  //emulateServerReturn(userData, cb);
+//}

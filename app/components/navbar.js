@@ -46,7 +46,7 @@ export default class Navbar extends React.Component {
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Theo Proulx <span className="caret"></span></a>
                 <ul className="dropdown-menu">
-                  <li><Link to="/myprofile/">Profile</Link></li>
+                  <li><Link to="/myProfile/">Profile</Link></li>
                   <li role="separator" className="divider"></li>
                   <li><a href="#">Sign Out</a></li>
                 </ul>
