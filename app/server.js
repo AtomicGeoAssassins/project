@@ -15,8 +15,8 @@ export function getGameData(cb) {
   emulateServerReturn(gameData, cb);
 }
 
-export function getUserData(cb) {
-  var userData = readEntireDocument('users');
+export function getUserData(userID, cb) {
+  var userData = readDocument('users', userID);
   emulateServerReturn(userData, cb);
 }
 
