@@ -10,6 +10,18 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
+export function setActiveNavLink(page){
+  $(document).ready(function () {
+    $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
+    $("#mainNavLinks li").filter(":contains('" + page + "')").addClass("active"); //add to the requested one
+  });
+  //$("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
+  //if(index === 0)
+    //$("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
+  //else
+    //$("#mainNavLinks li:nth-child(" + index +")").addClass("active"); //add active class to the caller
+}
+
 export function getGameData(cb) {
   var gameData = readEntireDocument('games');
   emulateServerReturn(gameData, cb);
