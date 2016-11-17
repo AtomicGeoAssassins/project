@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
   }
 
   updateActiveLink(index) {
-    $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
+      $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
     if(index === 0)
       $("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
     else
@@ -36,6 +36,7 @@ export default class Navbar extends React.Component {
               <li className=""><Link to="/" onClick={this.updateActiveLink.bind(this,1)}>Home</Link></li>
               <li><Link to="/games" onClick={this.updateActiveLink.bind(this,2)}>Games</Link></li>
               <li><Link to="/about/" onClick={this.updateActiveLink.bind(this,3)}>About</Link></li>
+              <li><Link to="/forum/" onClick={this.updateActiveLink.bind(this,3)}>Forum</Link></li>
               <li><Link to="/support/" onClick={this.updateActiveLink.bind(this,4)}>Support</Link></li>
             </ul>
             <div id='searchbar' className="col-sm-3">

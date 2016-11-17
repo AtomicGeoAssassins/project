@@ -48,6 +48,53 @@ var initialData = {
       "steamLink": 5
     }
   ],
+  "forum": [
+    {
+      "_id": 1,
+      "title": "Jimmy Carter",
+      "postTitle": "Welcome",
+      "insideData": "Hello, i was one of the presidents, i may be old now but im still effective",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 2,
+      "title": "Eric Johnson",
+      "postTitle": "Workshop 5",
+      "insideData": "I dont even know what im doing here",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 3,
+      "title": "William Shakespeare",
+      "postTitle": "New game for sale",
+      "insideData": "Selling call of duty modern warfare 7 for 29.99",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 4,
+      "title": "Theo Cortez",
+      "postTitle": "Games page not loading",
+      "insideData": "For some reason during the page load, my computer updates from linux to fedora",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    },
+    {
+      "_id": 5,
+      "title": "Tom Peck",
+      "postTitle": "I need money",
+      "insideData": "Hey I gambled all of my money away",
+      "comment1": "Dummy comment",
+      "comment2": "Dummy comment",
+      "comment3": "Dummy comment"
+    }
+  ],
   "users":{
     "1":
       {
