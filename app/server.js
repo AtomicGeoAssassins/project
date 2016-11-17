@@ -27,6 +27,10 @@ export function getGameData(cb) {
   emulateServerReturn(gameData, cb);
 }
 
+<<<<<<< HEAD
+export function getUserData(userID, cb) {
+  var userData = readDocument('users', userID);
+=======
 export function getForumData(cb) {
   var forumData = readEntireDocument('forum');
   emulateServerReturn(forumData, cb);
@@ -34,5 +38,6 @@ export function getForumData(cb) {
 
 export function getUserData(cb) {
   var userData = readEntireDocument('users');
+>>>>>>> a4142a3638956e0b6a6684c853dd9e851db634ff
   emulateServerReturn(userData, cb);
 }
