@@ -64,39 +64,39 @@ export default class MyProfile extends React.Component {
 
     return
     (
-    <div class="main-content">
-      <div class="col-md-8  col-md-offset-2">
-        <div class="col-md-3">
-          <button class="btn" type="button">Edit Profile</button>
-          //<h2>{Users.userName}</h2>
-          <img src="img/temporary_profile.png" width="5%" />
-          <h3>Bio:</h3>
-          //<p>{Users.bio}</p>
-          <h3>Email:</h3>
-          //<p>{Users.eMail}</p>
-          <h3>Steam Account:</h3>
-          //<p>{Users.steamAccount}</p>
-          <h3>Company:</h3>
-          //<p>{Users.companyName}</p>
-        </div>
-        <div class="col-md-9">
-          <h2>Watch List</h2>
-            <table class="table table-hover">
-            <thead class="baby-blue-header">
-              <tr>
-                <th>Game</th>
-                <th>Tomorrow Price</th>
-                <th>Yesterdays Price</th>
-                <th>Last Months Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {watchList}
-            </tbody>
-          </table>
+      <div className="">
+        <div className="">
+          <div className="col-md-3">
+            <button className="btn" type="button">Edit Profile</button>
+            //<h2>{Users.userName}</h2>
+            <img src="img/temporary_profile.png" width="5%" />
+            <h3>Bio:</h3>
+            //<p>{Users.bio}</p>
+            <h3>Email:</h3>
+            //<p>{Users.eMail}</p>
+            <h3>Steam Account:</h3>
+            //<p>{Users.steamAccount}</p>
+            <h3>Company:</h3>
+            //<p>{Users.companyName}</p>
+          </div>
+          <div className="col-md-9">
+            <h2>Watch List</h2>
+              <table className="table table-hover">
+              <thead className="baby-blue-header">
+                <tr>
+                  <th>Game</th>
+                  <th>Tomorrow Price</th>
+                  <th>Yesterdays Price</th>
+                  <th>Last Months Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {watchList}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
