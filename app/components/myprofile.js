@@ -28,56 +28,56 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    var Users;
-    var watchList;
+    var user = {};
+    var watchList = ( <pre></pre>);
+    
 
-    if(this.state.users) {
-      Users = (
-        this.state.users.map((user,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{this.state.users.userName}</td>
-              <td>{this.state.users.bio}</td>
-              <td>{this.state.users.eMail}</td>
-              <td>{this.state.users.steamAccount}</td>
-              <td>{this.state.users.companyName}</td>
-            </tr>
-          )
-        })
-      );
-    }
+    //if(this.state.users) {
+      //user = (
+        //this.state.users.map((user,i) => {
+          //return (
+            //<tr key={"line"+i}>
+              //<td>{this.state.users.userName}</td>
+              //<td>{this.state.users.bio}</td>
+              //<td>{this.state.users.eMail}</td>
+              //<td>{this.state.users.steamAccount}</td>
+              //<td>{this.state.users.companyName}</td>
+            //</tr>
+          //)
+        //})
+      //);
+    //}
 
-    if(this.state.games) {
-      watchList = (
-        this.state.games.map((game,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{game.title}</td>
-              <td>{game.beforePrice}</td>
-              <td>{game.currentPrice}</td>
-              <td>{game.futurePrice}</td>
-            </tr>
-          )
-        })
-      );
-    }
+    //if(this.state.games) {
+      //watchList = (
+        //this.state.games.map((game,i) => {
+          //return (
+            //<tr key={"line"+i}>
+              //<td>{game.title}</td>
+              //<td>{game.beforePrice}</td>
+              //<td>{game.currentPrice}</td>
+              //<td>{game.futurePrice}</td>
+            //</tr>
+          //)
+        //})
+      //);
+    //}
 
-    return
-    (
+    return (
       <div className="">
         <div className="">
           <div className="col-md-3">
             <button className="btn" type="button">Edit Profile</button>
-            //<h2>{Users.userName}</h2>
+            <h2>{user.userName}</h2>
             <img src="img/temporary_profile.png" width="5%" />
             <h3>Bio:</h3>
-            //<p>{Users.bio}</p>
+            <p>{user.bio}</p>
             <h3>Email:</h3>
-            //<p>{Users.eMail}</p>
+            <p>{user.eMail}</p>
             <h3>Steam Account:</h3>
-            //<p>{Users.steamAccount}</p>
+            <p>{user.steamAccount}</p>
             <h3>Company:</h3>
-            //<p>{Users.companyName}</p>
+            <p>{user.companyName}</p>
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
