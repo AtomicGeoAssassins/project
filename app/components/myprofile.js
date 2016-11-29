@@ -28,7 +28,6 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    var user = {};
     var watchList;
     
     if(this.state.games) {
