@@ -32,7 +32,6 @@
       "react/jsx-no-undef": 1,
       "react/jsx-uses-react": 1,
       "react/jsx-uses-vars": 1,
-      "react/no-deprecated": [1, {"react": "0.14.6"}],
       "react/no-direct-mutation-state": 1,
       "react/no-is-mounted": 1
     }
