@@ -8,7 +8,7 @@ export default class MyProfile extends React.Component {
     super(props);
     this.state = {
       contents: [],
-      users: "",
+      user: "",
       watchList: ""
     };
   }
@@ -19,8 +19,8 @@ export default class MyProfile extends React.Component {
 
   refresh()
   {
-    getUserData("1", (users) => {
-      this.setState({ "users": users });
+    getUserData("1", (user) => {
+      this.setState({"user": user });
     });
     getGameData((games) => {
       this.setState({ "games": games });
@@ -28,25 +28,8 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    var Users;
     var watchList;
-
-    if(this.state.users) {
-      Users = (
-        this.state.users.map((user,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{this.state.users.userName}</td>
-              <td>{this.state.users.bio}</td>
-              <td>{this.state.users.eMail}</td>
-              <td>{this.state.users.steamAccount}</td>
-              <td>{this.state.users.companyName}</td>
-            </tr>
-          )
-        })
-      );
-    }
-
+    
     if(this.state.games) {
       watchList = (
         this.state.games.map((game,i) => {
@@ -62,22 +45,21 @@ export default class MyProfile extends React.Component {
       );
     }
 
-    return
-    (
+    return (
       <div className="">
         <div className="">
           <div className="col-md-3">
             <button className="btn" type="button">Edit Profile</button>
-            //<h2>{Users.userName}</h2>
+            <h2>{this.state.user.userName}</h2>
             <img src="img/temporary_profile.png" width="5%" />
             <h3>Bio:</h3>
-            //<p>{Users.bio}</p>
+            <p>{this.state.user.bio}</p>
             <h3>Email:</h3>
-            //<p>{Users.eMail}</p>
+            <p>{this.state.user.eMail}</p>
             <h3>Steam Account:</h3>
-            //<p>{Users.steamAccount}</p>
+            <p>{this.state.user.steamAccount}</p>
             <h3>Company:</h3>
-            //<p>{Users.companyName}</p>
+            <p>{this.state.user.companyName}</p>
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
