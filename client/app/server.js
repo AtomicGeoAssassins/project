@@ -86,20 +86,20 @@ function sendXHR(verb, resource, body, cb) {
   }
 }
 
-function useCB(xhr) { 
+function useCB(xhr,cb) { 
   cb(JSON.parse(xhr.responseText));
 }
 
 export function getGameData(cb) {
-  sendXHR('GET', '/game', undefined, useCB); 
+  sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) }); 
 }
 
 export function getUserData(userID, cb) {
-  sendXHR('GET', '/user/'+userID, undefined, useCB); 
+  sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) }); 
 }
 
 export function getForumData(cb) {
-  sendXHR('GET', '/forum', undefined, useCB); 
+  sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) }); 
 }
 
 //export function getUserData(cb) {
