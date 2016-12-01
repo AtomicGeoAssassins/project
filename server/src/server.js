@@ -49,6 +49,22 @@ app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
 });
 
+//user 
+app.get('/user/:id', function (req, res) {
+  var userid = req.params.id;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+    // Send response.
+    res.send(readDocument('users',userid));
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
+
 /**
  * Translate JSON Schema Validation failures into error 400s.
  */
