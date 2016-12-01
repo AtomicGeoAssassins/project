@@ -1,5 +1,5 @@
 import React from 'react';
-import {getGameData, setActiveNavLink} from '../server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink} from '../server';
 import {Link} from 'react-router';
 export default class Home extends React.Component {
   constructor(props) {
@@ -15,36 +15,42 @@ export default class Home extends React.Component {
   }
 
   refresh() {
-    getGameData((games) => {
-      this.setState({ "games": games });
+    getPopularGameData((games) => {
+      this.setState({ "popularGames": games });
+    });
+
+    getPriceyGameData((games) => {
+      this.setState({ "priceyGames": games });
     });
   }
 
   render() {
     var popularGames;
     var highestPricedGames;
-    if(this.state.games) {
+    if(this.state.popularGames) {
       popularGames = (
-        this.state.games.map((game,i) => {
+        this.state.popularGames.map((game,i) => {
           return (
             <tr key={"line"+i}>
-              <td>{game.title}</td>
-              <td>{game.beforePrice}</td>
-              <td>{game.currentPrice}</td>
-              <td>{game.futurePrice}</td>
+              <td>{game.name}</td>
+              <td>{game.original_price}</td>
+              <td>{game.final_price}</td>
+              <td>{game.future_price}</td>
             </tr>
           )
         })
       );
-
+    }
+    
+    if(this.state.priceyGames) {
       highestPricedGames = (
-        this.state.games.map((game,i) => {
+        this.state.priceyGames.map((game,i) => {
           return (
             <tr key={"line"+i}>
-              <td>{game.title}</td>
-              <td>{game.beforePrice}</td>
-              <td>{game.currentPrice}</td>
-              <td>{game.futurePrice}</td>
+              <td>{game.name}</td>
+              <td>{game.original_price}</td>
+              <td>{game.final_price}</td>
+              <td>{game.future_price}</td>
             </tr>
           )
         })
@@ -53,18 +59,18 @@ export default class Home extends React.Component {
 
     return (
     <div>
-      <h2>Most Popular Games</h2>
+      <h2>Featured Games</h2>
       <table className="table table-hover">
         <thead className="baby-blue-header">
           <tr>
             <th>Game</th>
-            <th>Yesterday's Price</th>
+            <th>Original Price</th>
             <th>Today's Price</th>
-            <th>Tomorrow's Price</th>
+            <th>Estimated Tomorrow's Price</th>
           </tr>
         </thead>
         <tbody>
-        {popularGames}
+          {popularGames}
         </tbody>
       </table>
       <h2>Highest Priced Games</h2>
@@ -72,13 +78,13 @@ export default class Home extends React.Component {
         <thead className="baby-blue-header">
           <tr>
             <th>Game</th>
-            <th>Yesterday's Price</th>
+            <th>Original Price</th>
             <th>Today's Price</th>
-            <th>Tomorrow's Price</th>
+            <th>Estimated Tomorrow's Price</th>
           </tr>
         </thead>
         <tbody>
-        {highestPricedGames}
+          {highestPricedGames}
         </tbody>
       </table>
     </div>

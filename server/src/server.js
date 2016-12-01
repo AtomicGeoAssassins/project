@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 //var util = require("./util.js");
 var bodyParser = require('body-parser');
+var request = require('request');
+var extend = require('extend');
 var readDocument = require('./database.js').readDocument;
 //var StatusUpdateSchema = require('./schemas/statusupdate.json');
 var validate = require('express-jsonschema').validate;
@@ -47,6 +49,15 @@ function getUserIdFromToken(authorizationLine) {
 //games index
 app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
+});
+
+//popular games
+app.get('/game/popular', function (req, res) {
+  $.get("http://store.steampowered.com/api/featured/", function (res) { 
+    //studies that i just made up confirm that this is how game prices change
+    res = JSON.parse(res);
+    cb($.extend(res, { future_price: Math.floor(res.final_price/2) })); 
+  });
 });
 
 //user show

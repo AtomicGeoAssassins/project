@@ -94,6 +94,14 @@ export function getGameData(cb) {
   sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) }); 
 }
 
+export function getPopularGameData(cb) {
+  sendXHR('GET', '/game/popular', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function getPriceyGameData(cb) {
+  sendXHR('GET', '/game/pricey', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
 export function getUserData(userID, cb) {
   sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) }); 
 }
