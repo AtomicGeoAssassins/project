@@ -49,7 +49,7 @@ app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
 });
 
-//user 
+//user show
 app.get('/user/:id', function (req, res) {
   var userid = req.params.id;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
@@ -63,6 +63,15 @@ app.get('/user/:id', function (req, res) {
     // 401: Unauthorized request.
     res.status(401).end();
   }
+});
+
+// Reset database.
+app.post('/resetdb', function(req, res) {
+  console.log("Resetting database...");
+  // This is a debug route, so don't do any validation.
+  database.resetDatabase();
+  // res.send() sends an empty response with status code 200
+  res.send();
 });
 
 /**
