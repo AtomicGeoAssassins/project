@@ -1,5 +1,5 @@
 import React from 'react';
-import {unixTimeToString} from '../util';
+import {unixTimeToString} from './components/util.js';
 import {Link} from 'react-router';
 
 export default class Comment extends React.Component {

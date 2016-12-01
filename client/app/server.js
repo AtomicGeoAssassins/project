@@ -86,20 +86,134 @@ function sendXHR(verb, resource, body, cb) {
   }
 }
 
-function useCB(xhr,cb) { 
+//----------------------------------Forum Functions Start----------------------------------
+
+export function getFeedItemSync(feedItemId) {
+  var feedItem = readDocument('feedItems', feedItemId);
+  // Resolve 'like' counter.
+  feedItem.likeCounter = feedItem.likeCounter.map((id) => readDocument('users', id));
+  // Assuming a StatusUpdate. If we had other types of FeedItems in the DB, we would
+  // need to check the type and have logic for each type.
+  feedItem.contents.author = readDocument('users', feedItem.contents.author);
+  // Resolve comment author.
+  feedItem.comments.forEach((comment) => {
+    comment.author = readDocument('users', comment.author);
+  });
+  return feedItem;
+}
+
+/**
+ * Emulates a REST call to get the feed data for a particular user.
+ */
+export function getFeedData(user, cb) {
+  sendXHR('GET', '/user/4/feed', undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+});
+}
+
+/**
+ * Adds a new status update to the database.
+ */
+export function postStatusUpdate(user, location, contents, cb) {
+  sendXHR('POST', '/feeditem', {
+    userId: user,
+    location: location,
+    contents: contents
+  }, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+/**
+ * Adds a new comment to the database on the given feed item.
+ */
+export function postComment(feedItemId, author, contents, cb) {
+  sendXHR('POST', '/feeditem/' + feedItemId +"/comment", {
+    userId: author,
+    contents: contents
+  }, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+/**
+ * Updates a feed item's likeCounter by adding the user to the likeCounter.
+ * Provides an updated likeCounter in the response.
+ */
+
+ export function likeFeedItem(feedItemId, userId, cb) {
+   sendXHR('PUT', '/feeditem/' + feedItemId + '/likelist/' + userId,
+   undefined, (xhr) => {
+     cb(JSON.parse(xhr.responseText));
+   })
+ }
+
+/**
+ * Updates a feed item's likeCounter by removing the user from the likeCounter.
+ * Provides an updated likeCounter in the response.
+ */
+ export function unlikeFeedItem(feedItemId, userId, cb) {
+   sendXHR('DELETE', '/feeditem/' + feedItemId + '/likelist/' + userId,
+   undefined, (xhr) => {
+     cb(JSON.parse(xhr.responseText));
+   });
+ }
+
+/**
+ * Adds a 'like' to a comment.
+ */
+export function likeComment(feedItemId, commentIdx, userId, cb) {
+  sendXHR('PUT', '/feeditem/' + feedItemId + '/comment/' + commentIdx + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+/**
+ * Removes a 'like' from a comment.
+ */
+export function unlikeComment(feedItemId, commentIdx, userId, cb) {
+  sendXHR('DELETE', '/feeditem/' + feedItemId + '/comment/' + commentIdx + '/likelist/' + userId,
+  undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+/**
+ * Updates the text in a feed item (assumes a status update)
+ */
+export function updateFeedItemText(feedItemId, newContent, cb) {
+  sendXHR('PUT', '/feeditem/' + feedItemId + '/content', newContent, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
+/**
+ * Deletes a feed item.
+ */
+ export function deleteFeedItem(feedItemId, cb) {
+   sendXHR('DELETE', '/feeditem/' + feedItemId, undefined, () => {
+     cb();
+   });
+ }
+
+
+//----------------------------------Forum Functions End------------------------------------
+function useCB(xhr,cb) {
   cb(JSON.parse(xhr.responseText));
 }
 
 export function getGameData(cb) {
-  sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) }); 
+  sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getUserData(userID, cb) {
-  sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) }); 
+  sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getForumData(cb) {
-  sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) }); 
+  sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 //export function getUserData(cb) {
