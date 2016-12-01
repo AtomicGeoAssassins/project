@@ -10,12 +10,60 @@ var validate = require('express-jsonschema').validate;
 var database = require('./database.js');
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
+var readEntireDocument = database.readEntireDocument;
 app.use(bodyParser.text());
 app.use(bodyParser.json());
 
 // You run the server from `server`, so `../client/build` is `server/../client/build`.
 // '..' means "go up one directory", so this translates into `client/build`!
 app.use(express.static('../client/build'));
+
+/**
+ * Get the user ID from a token. Returns -1 (an invalid ID)
+ * if it fails.
+ */
+function getUserIdFromToken(authorizationLine) {
+  try {
+    // Cut off "Bearer " from the header value.
+    var token = authorizationLine.slice(7);
+    // Convert the base64 string to a UTF-8 string.
+    var regularString = new Buffer(token, 'base64').toString('utf8');
+    // Convert the UTF-8 string into a JavaScript object.
+    var tokenObj = JSON.parse(regularString);
+    var id = tokenObj['id'];
+    // Check that id is a number.
+    if (typeof id === 'number') {
+      return id;
+    } else {
+      // Not a number. Return -1, an invalid ID.
+      return -1;
+    }
+  } catch (e) {
+    // Return an invalid ID.
+    return -1;
+  }
+}
+
+//games index
+app.get('/game', function (req, res) {
+  res.send(readEntireDocument('games'));
+});
+
+//user 
+app.get('/user/:id', function (req, res) {
+  var userid = req.params.id;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+    // Send response.
+    res.send(readDocument('users',userid));
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
+});
 
 /**
  * Translate JSON Schema Validation failures into error 400s.

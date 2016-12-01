@@ -19,7 +19,7 @@ export default class MyProfile extends React.Component {
 
   refresh()
   {
-    getUserData("1", (user) => {
+    getUserData("4", (user) => {
       this.setState({"user": user });
     });
     getGameData((games) => {
