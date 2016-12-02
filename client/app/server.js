@@ -34,7 +34,7 @@ function sendXHR(verb, resource, body, cb) {
   // The below comment tells ESLint that FacebookError is a global.
   // Otherwise, ESLint would complain about it! (See what happens in Atom if
   // you remove the comment...)
-  /* global FacebookError */
+  /* global AppError */
   // Response received from server. It could be a failure, though!
   xhr.addEventListener('load', function() {
     var statusCode = xhr.status;
@@ -48,7 +48,7 @@ function sendXHR(verb, resource, body, cb) {
       // The server may have included some response text with details concerning
       // the error.
       var responseText = xhr.responseText;
-      FacebookError('Could not ' + verb + " " + resource + ": Received " +
+      AppError('Could not ' + verb + " " + resource + ": Received " +
         statusCode + " " + statusText + ": " + responseText);
     }
   });
@@ -57,12 +57,12 @@ function sendXHR(verb, resource, body, cb) {
   xhr.timeout = 10000;
   // Network failure: Could not connect to server.
   xhr.addEventListener('error', function() {
-    FacebookError('Could not ' + verb + " " + resource +
+    AppError('Could not ' + verb + " " + resource +
       ": Could not connect to the server.");
   });
   // Network failure: request took too long to complete.
   xhr.addEventListener('timeout', function() {
-    FacebookError('Could not ' + verb + " " + resource +
+    AppError('Could not ' + verb + " " + resource +
       ": Request timed out.");
   });
   switch (typeof(body)) {
@@ -134,50 +134,7 @@ export function postComment(feedItemId, author, contents, cb) {
     contents: contents
   }, (xhr) => {
     cb(JSON.parse(xhr.responseText));
-  });
-}
-
-/**
- * Updates a feed item's likeCounter by adding the user to the likeCounter.
- * Provides an updated likeCounter in the response.
- */
-
- export function likeFeedItem(feedItemId, userId, cb) {
-   sendXHR('PUT', '/feeditem/' + feedItemId + '/likelist/' + userId,
-   undefined, (xhr) => {
-     cb(JSON.parse(xhr.responseText));
-   })
- }
-
-/**
- * Updates a feed item's likeCounter by removing the user from the likeCounter.
- * Provides an updated likeCounter in the response.
- */
- export function unlikeFeedItem(feedItemId, userId, cb) {
-   sendXHR('DELETE', '/feeditem/' + feedItemId + '/likelist/' + userId,
-   undefined, (xhr) => {
-     cb(JSON.parse(xhr.responseText));
-   });
- }
-
-/**
- * Adds a 'like' to a comment.
- */
-export function likeComment(feedItemId, commentIdx, userId, cb) {
-  sendXHR('PUT', '/feeditem/' + feedItemId + '/comment/' + commentIdx + '/likelist/' + userId,
-  undefined, (xhr) => {
-    cb(JSON.parse(xhr.responseText));
-  });
-}
-
-/**
- * Removes a 'like' from a comment.
- */
-export function unlikeComment(feedItemId, commentIdx, userId, cb) {
-  sendXHR('DELETE', '/feeditem/' + feedItemId + '/comment/' + commentIdx + '/likelist/' + userId,
-  undefined, (xhr) => {
-    cb(JSON.parse(xhr.responseText));
-  });
+  })
 }
 
 /**
@@ -200,12 +157,21 @@ export function updateFeedItemText(feedItemId, newContent, cb) {
 
 
 //----------------------------------Forum Functions End------------------------------------
+
 function useCB(xhr,cb) {
   cb(JSON.parse(xhr.responseText));
 }
 
 export function getGameData(cb) {
   sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function getPopularGameData(cb) {
+  sendXHR('GET', '/game/popular', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function getPriceyGameData(cb) {
+  sendXHR('GET', '/game/pricey', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getUserData(userID, cb) {

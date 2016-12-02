@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 //var util = require("./util.js");
 var bodyParser = require('body-parser');
+var request = require('request');
+var extend = require('extend');
 var readDocument = require('./database.js').readDocument;
 //var StatusUpdateSchema = require('./schemas/statusupdate.json');
 var validate = require('express-jsonschema').validate;
@@ -116,6 +118,32 @@ app.post('/feeditem', validate({ body: StatusUpdateSchema}), function(req, res) 
 //games index
 app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
+});
+
+//popular games
+app.get('/game/popular', function (req, res) {
+  request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+      query_body.forEach(function (item) {
+        extend(item, { future_price: Math.floor(item.final_price/2) })
+      });
+      res.send(query_body); 
+    }
+  });
+});
+
+//popular games
+app.get('/game/pricey', function (req, res) {
+  request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+      query_body.forEach(function (item) {
+        extend(item, { future_price: Math.floor(item.final_price/2) })
+      });
+      res.send(query_body); 
+    }
+  });
 });
 
 //user show
