@@ -75,7 +75,7 @@ app.get('/game/:gameid', function (req, res) {
             var final_price = game.data.price_overview.final;
             var future_price = futurePrice(final_price);
             extend(game, {original_price: original_price, final_price: final_price, 
-              future_price: future_price, appid: appid }); //put them in the root
+              future_price: future_price, appid: appid, name: game.data.name }); //put them in the root
             games.push(game); //add to our running list
           }
         });
