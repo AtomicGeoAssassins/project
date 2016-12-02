@@ -49,30 +49,55 @@ function getUserIdFromToken(authorizationLine) {
 //games index
 //obsolete, this pulls static data not stuff from the api
 //dont use me
-app.get('/game', function (req, res) {
+app.get('/games', function (req, res) {
   res.send(readEntireDocument('games'));
 });
 
+var futurePrice = function (final_price) { return Math.floor(final_price/2); }
+
 //retrieve a game
 app.get('/game/:gameid', function (req, res) {
-  request('http://store.steampowered.com/api/appdetails?appids=' + req.params.gameid, function (error, query_response, query_body) {
-    if (!error && query_response.statusCode == 200) {
-      query_body = JSON.parse(query_body);
+  var games = []; //this will hold our games
+  var appids = req.params.gameid.trim().split(',');
+  appids.forEach(function (item) { //fyi foreach is not async
+    console.log("requesting " + item);
+    request('http://store.steampowered.com/api/appdetails/?appids=' + item, function (error, query_response, query_body) {
+      console.log("request for " + item + " done");
+      if (!error && query_response.statusCode == 200) {
+        query_body = JSON.parse(query_body); //parse
 
-      res.send(query_body); 
-    }
+        //join it all in an array
+        Object.keys(query_body).forEach(function (appid) {
+          var game = query_body[appid];
+          if(game.success === true) {
+            //pull out prices
+            var original_price = game.data.price_overview.initial;
+            var final_price = game.data.price_overview.final;
+            var future_price = futurePrice(final_price);
+            extend(game, {original_price: original_price, final_price: final_price, 
+              future_price: future_price, appid: appid }); //put them in the root
+            games.push(game); //add to our running list
+          }
+        });
+      } else 
+        games.push("error on appid " + item);
+
+      //if this is the last thing we can return
+      if(games.length >= appids.length) {
+        res.send(games); //after each send the response
+        return;
+      }
+    });
   });
 });
 
-
-
 //popular games
-app.get('/game/popular', function (req, res) {
+app.get('/games/popular', function (req, res) {
   request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
     if (!error && query_response.statusCode == 200) {
       query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
       query_body.forEach(function (item) {
-        extend(item, { future_price: Math.floor(item.final_price/2) })
+        extend(item, { future_price: futurePrice(item.final_price) });
       });
       res.send(query_body); 
     }
@@ -80,12 +105,12 @@ app.get('/game/popular', function (req, res) {
 });
 
 //popular games
-app.get('/game/pricey', function (req, res) {
+app.get('/games/pricey', function (req, res) {
   request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
     if (!error && query_response.statusCode == 200) {
       query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
       query_body.forEach(function (item) {
-        extend(item, { future_price: Math.floor(item.final_price/2) })
+        extend(item, { future_price: futurePrice(item.final_price) })
       });
       res.send(query_body); 
     }

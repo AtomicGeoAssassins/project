@@ -1,6 +1,7 @@
 import React from 'react';
-import {getUserData} from '../server';
+import {getUserData, adjustPrice} from '../server';
 import {getGameData, getGameById} from '../server';
+import GamesTable from './gamesTable';
 import {Link} from 'react-router';
 export default class MyProfile extends React.Component {
 
@@ -22,9 +23,10 @@ export default class MyProfile extends React.Component {
     getUserData("4", (user) => {
       var games = user.watchList.join(",");
       getGameById(games, (games) => { //returns a json containing the games
-        Object.keys(games).forEach(function (item) { //foreach games
-          var game = games[item];
-        });
+        this.setState({"games": games});
+        //Object.keys(games).forEach(function (item) { //foreach games
+          //var game = games[item];
+        //});
       });
       this.setState({"user": user });
     });
@@ -37,11 +39,11 @@ export default class MyProfile extends React.Component {
       watchList = (
         this.state.games.map((game,i) => {
           return (
-            <tr key={"line"+i}>
-              <td>{game.title}</td>
-              <td>{game.beforePrice}</td>
-              <td>{game.currentPrice}</td>
-              <td>{game.futurePrice}</td>
+            <tr key={game.appid}>
+              <td>{game.name}</td>
+              <td>{adjustPrice(game.original_price)}</td>
+              <td>{adjustPrice(game.final_price)}</td>
+              <td>{adjustPrice(game.future_price)}</td>
             </tr>
           )
         })

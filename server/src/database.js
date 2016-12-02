@@ -124,7 +124,7 @@ var initialData = {
         "eMail": "temp4@gmail.com",
         "steamAccount": "tempFour",
         "companyName": "Team123",
-        "watchList": [1,2,3]
+        "watchList": [311210, 504370]
       },
     "5":
       {

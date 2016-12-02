@@ -1,5 +1,5 @@
 import React from 'react';
-import {getPopularGameData, getPriceyGameData, setActiveNavLink} from '../server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice} from '../server';
 import {Link} from 'react-router';
 export default class Home extends React.Component {
   constructor(props) {
@@ -27,12 +27,6 @@ export default class Home extends React.Component {
   render() {
     var popularGames;
     var highestPricedGames;
-
-    var adjustPrice = (price) => {
-      if(price == null || price == 0) return "Free!";
-      price = price.toString();
-      return "$" + price.slice(0,price.length-2) + "." + price.slice(price.length-2,price.length);
-    }
 
     if(this.state.popularGames) {
       popularGames = (
