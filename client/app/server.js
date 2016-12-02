@@ -94,6 +94,10 @@ export function getGameData(cb) {
   sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
+export function getGameById(id,cb) {
+  sendXHR('GET', '/game/'+id, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
 export function getPopularGameData(cb) {
   sendXHR('GET', '/game/popular', undefined, (xhr) => { useCB(xhr,cb) });
 }

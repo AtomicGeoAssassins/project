@@ -1,6 +1,6 @@
 // Your startup's initial mock objects go here
 var initialData = {
-  "games": [
+  "games": [ //these games are obsolete, we pull from the steam api
     {
       "_id": 1,
       "title": "Fake Game 1",

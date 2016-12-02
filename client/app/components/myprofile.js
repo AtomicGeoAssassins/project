@@ -1,6 +1,6 @@
 import React from 'react';
 import {getUserData} from '../server';
-import {getGameData} from '../server';
+import {getGameData, getGameById} from '../server';
 import {Link} from 'react-router';
 export default class MyProfile extends React.Component {
 
@@ -20,10 +20,13 @@ export default class MyProfile extends React.Component {
   refresh()
   {
     getUserData("4", (user) => {
+      var games = user.watchList.join(",");
+      getGameById(games, (games) => { //returns a json containing the games
+        Object.keys(games).forEach(function (item) { //foreach games
+          var game = games[item];
+        });
+      });
       this.setState({"user": user });
-    });
-    getGameData((games) => {
-      this.setState({ "games": games });
     });
   }
 

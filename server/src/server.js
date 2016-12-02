@@ -47,9 +47,24 @@ function getUserIdFromToken(authorizationLine) {
 }
 
 //games index
+//obsolete, this pulls static data not stuff from the api
+//dont use me
 app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
 });
+
+//retrieve a game
+app.get('/game/:gameid', function (req, res) {
+  request('http://store.steampowered.com/api/appdetails?appids=' + req.params.gameid, function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body);
+
+      res.send(query_body); 
+    }
+  });
+});
+
+
 
 //popular games
 app.get('/game/popular', function (req, res) {
