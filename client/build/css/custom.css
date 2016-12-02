@@ -4,7 +4,7 @@
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -28,4 +28,26 @@ footer {
 
 .imgUmass {
   width="30%";
+}
+
+.forumNameFormat{
+  font-size: 8px;
+}
+
+.forumPostingTitle{
+  width: 50%;
+}
+
+.forumPostTitleFormat{
+  font-size:14px;
+}
+
+.forumPostFormat{
+  font-size: 14px;
+}
+
+.forumPostingTextbox{
+  width: 100%;
+  align-self: center;
+  height: 100px;
 }

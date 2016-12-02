@@ -9,7 +9,7 @@ export default class Navbar extends React.Component {
   }
 
   updateActiveLink(index) {
-    $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
+      $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
     if(index === 0)
       $("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
     else
@@ -34,9 +34,10 @@ export default class Navbar extends React.Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav" id="mainNavLinks">
               <li className=""><Link to="/" onClick={this.updateActiveLink.bind(this,1)}>Home</Link></li>
-              <li><Link to="/games" onClick={this.updateActiveLink.bind(this,2)}>Games</Link></li>
+              <li><Link to="/games/" onClick={this.updateActiveLink.bind(this,2)}>Games</Link></li>
               <li><Link to="/about/" onClick={this.updateActiveLink.bind(this,3)}>About</Link></li>
-              <li><Link to="/support/" onClick={this.updateActiveLink.bind(this,4)}>Support</Link></li>
+              <li><Link to="/forum/" onClick={this.updateActiveLink.bind(this,4)}>Forum</Link></li>
+              <li><Link to="/support/" onClick={this.updateActiveLink.bind(this,5)}>Support</Link></li>
             </ul>
             <div id='searchbar' className="col-sm-3">
               <Searchbar />
@@ -45,7 +46,7 @@ export default class Navbar extends React.Component {
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Theo Proulx <span className="caret"></span></a>
                 <ul className="dropdown-menu">
-                  <li><Link to="/myprofile/">Profile</Link></li>
+                  <li><Link to="/myProfile/">Profile</Link></li>
                   <li role="separator" className="divider"></li>
                   <li><a href="#">Sign Out</a></li>
                 </ul>
