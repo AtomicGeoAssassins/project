@@ -67,6 +67,7 @@ export default class Forum extends React.Component {
         <div className="col-md-2"></div>
         <div className="col-md-7">
           <h1>AtomicGeoAssassins Forums</h1>
+          <h2>Support</h2>
           <div className="fb-status-update panel panel-default">
             <div className="panel-body">
               Boards:
