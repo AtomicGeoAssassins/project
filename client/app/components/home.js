@@ -1,6 +1,7 @@
 import React from 'react';
 import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice} from '../server';
 import {Link} from 'react-router';
+import GamesTable from './gamesTable';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -25,69 +26,12 @@ export default class Home extends React.Component {
   }
 
   render() {
-    var popularGames;
-    var highestPricedGames;
-
-    if(this.state.popularGames) {
-      popularGames = (
-        this.state.popularGames.map((game,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{game.name}</td>
-              <td>{adjustPrice(game.original_price)}</td>
-              <td>{adjustPrice(game.final_price)}</td>
-              <td>{adjustPrice(game.future_price)}</td>
-            </tr>
-          )
-        })
-      );
-    }
-    
-    if(this.state.priceyGames) {
-      highestPricedGames = (
-        this.state.priceyGames.map((game,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{game.name}</td>
-              <td>{adjustPrice(game.original_price)}</td>
-              <td>{adjustPrice(game.final_price)}</td>
-              <td>{adjustPrice(game.future_price)}</td>
-            </tr>
-          )
-        })
-      );
-    }
-
     return (
     <div>
       <h2>Featured Games</h2>
-      <table className="table table-hover">
-        <thead className="baby-blue-header">
-          <tr>
-            <th>Game</th>
-            <th>Original Price</th>
-            <th>Today's Price</th>
-            <th>Estimated Tomorrow's Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {popularGames}
-        </tbody>
-      </table>
+      <GamesTable games={this.state.popularGames} />
       <h2>Highest Priced Games</h2>
-      <table className="table table-hover">
-        <thead className="baby-blue-header">
-          <tr>
-            <th>Game</th>
-            <th>Original Price</th>
-            <th>Today's Price</th>
-            <th>Estimated Tomorrow's Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {highestPricedGames}
-        </tbody>
-      </table>
+      <GamesTable games={this.state.priceyGames} />
     </div>
     );
   }
