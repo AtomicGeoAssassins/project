@@ -17,12 +17,6 @@ export default class Feed extends React.Component {
     });
   }
 
-  deleteFeedItem(id) {
-    deleteFeedItem(id, () => {
-      this.refresh();
-    });
-  }
-
   onPost(postContents) {
     // Send to server.
     // We could use geolocation to get a location, but let's fix it to Amherst
@@ -43,7 +37,7 @@ export default class Feed extends React.Component {
         <StatusUpdateEntry onPost={(postContents) => this.onPost(postContents)} />
         {this.state.contents.map((feedItem) => {
           return (
-            <FeedItem key={feedItem._id} data={feedItem} onDelete={() => this.deleteFeedItem(feedItem._id)} />
+            <FeedItem key={feedItem._id} data={feedItem} />
           )
         })}
       </div>
