@@ -53,10 +53,27 @@ app.get('/game', function (req, res) {
 
 //popular games
 app.get('/game/popular', function (req, res) {
-  $.get("http://store.steampowered.com/api/featured/", function (res) { 
-    //studies that i just made up confirm that this is how game prices change
-    res = JSON.parse(res);
-    cb($.extend(res, { future_price: Math.floor(res.final_price/2) })); 
+  request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+      query_body.forEach(function (item) {
+        extend(item, { future_price: Math.floor(item.final_price/2) })
+      });
+      res.send(query_body); 
+    }
+  });
+});
+
+//popular games
+app.get('/game/pricey', function (req, res) {
+  request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+      query_body.forEach(function (item) {
+        extend(item, { future_price: Math.floor(item.final_price/2) })
+      });
+      res.send(query_body); 
+    }
   });
 });
 

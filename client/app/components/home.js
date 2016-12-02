@@ -27,15 +27,22 @@ export default class Home extends React.Component {
   render() {
     var popularGames;
     var highestPricedGames;
+
+    var adjustPrice = (price) => {
+      if(price == null) return;
+      price = price.toString();
+      return price.slice(0,price.length-2) + "." + price.slice(price.length-2,price.length);
+    }
+
     if(this.state.popularGames) {
       popularGames = (
         this.state.popularGames.map((game,i) => {
           return (
             <tr key={"line"+i}>
               <td>{game.name}</td>
-              <td>{game.original_price}</td>
-              <td>{game.final_price}</td>
-              <td>{game.future_price}</td>
+              <td>{adjustPrice(game.original_price)}</td>
+              <td>{adjustPrice(game.final_price)}</td>
+              <td>{adjustPrice(game.future_price)}</td>
             </tr>
           )
         })
@@ -48,9 +55,9 @@ export default class Home extends React.Component {
           return (
             <tr key={"line"+i}>
               <td>{game.name}</td>
-              <td>{game.original_price}</td>
-              <td>{game.final_price}</td>
-              <td>{game.future_price}</td>
+              <td>{adjustPrice(game.original_price)}</td>
+              <td>{adjustPrice(game.final_price)}</td>
+              <td>{adjustPrice(game.future_price)}</td>
             </tr>
           )
         })
