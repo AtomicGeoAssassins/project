@@ -31,7 +31,7 @@ export default class Home extends React.Component {
     var adjustPrice = (price) => {
       if(price == null || price == 0) return "Free!";
       price = price.toString();
-      return price.slice(0,price.length-2) + "." + price.slice(price.length-2,price.length);
+      return "$" + price.slice(0,price.length-2) + "." + price.slice(price.length-2,price.length);
     }
 
     if(this.state.popularGames) {
