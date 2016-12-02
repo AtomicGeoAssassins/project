@@ -24,9 +24,6 @@ export default class MyProfile extends React.Component {
       var games = user.watchList.join(",");
       getGameById(games, (games) => { //returns a json containing the games
         this.setState({"games": games});
-        //Object.keys(games).forEach(function (item) { //foreach games
-          //var game = games[item];
-        //});
       });
       this.setState({"user": user });
     });
@@ -52,7 +49,7 @@ export default class MyProfile extends React.Component {
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
-            <GamesTable games={this.state.games} /> 
+            <GamesTable games={this.state.games} />
           </div>
         </div>
       </div>

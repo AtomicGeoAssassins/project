@@ -1,4 +1,5 @@
 import React from 'react';
+import {adjustPrice} from '../server';
 export default class GamesTable extends React.Component {
   constructor(props) {
     super(props);
@@ -7,10 +8,6 @@ export default class GamesTable extends React.Component {
       watchList: "",
       games: props.games
     };
-  }
-
-  componentDidMount() {
-    this.refresh();
   }
 
   render() {
