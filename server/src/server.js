@@ -60,9 +60,7 @@ app.get('/game/:gameid', function (req, res) {
   var games = []; //this will hold our games
   var appids = req.params.gameid.trim().split(',');
   appids.forEach(function (item) { //fyi foreach is not async
-    console.log("requesting " + item);
     request('http://store.steampowered.com/api/appdetails/?appids=' + item, function (error, query_response, query_body) {
-      console.log("request for " + item + " done");
       if (!error && query_response.statusCode == 200) {
         query_body = JSON.parse(query_body); //parse
 

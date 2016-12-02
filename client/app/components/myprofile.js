@@ -33,22 +33,6 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
-    var watchList;
-    
-    if(this.state.games) {
-      watchList = (
-        this.state.games.map((game,i) => {
-          return (
-            <tr key={game.appid}>
-              <td>{game.name}</td>
-              <td>{adjustPrice(game.original_price)}</td>
-              <td>{adjustPrice(game.final_price)}</td>
-              <td>{adjustPrice(game.future_price)}</td>
-            </tr>
-          )
-        })
-      );
-    }
 
     return (
       <div className="">
@@ -68,19 +52,7 @@ export default class MyProfile extends React.Component {
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
-              <table className="table table-hover">
-              <thead className="baby-blue-header">
-                <tr>
-                  <th>Game</th>
-                  <th>Tomorrow Price</th>
-                  <th>Yesterdays Price</th>
-                  <th>Last Months Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                {watchList}
-              </tbody>
-            </table>
+            <GamesTable games={this.state.games} /> 
           </div>
         </div>
       </div>

@@ -4,7 +4,8 @@ export default class GamesTable extends React.Component {
     super(props);
     this.state = {
       contents: [],
-      watchList: ""
+      watchList: "",
+      games: props.games
     };
   }
 
