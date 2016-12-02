@@ -46,6 +46,75 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+//---------------------------------Forum Stuff Starts-----------------------------
+
+function postComment(feedItemId, user, contents){
+  var comment = {
+    "author": user,
+    "contents": contents,
+    "postDate": new Date().getTime(),
+    "likeCounter": []
+  };
+  var feedItem = doc.readDocument('feedItems', feedItemId);
+  feedItem.comments.push(comment);
+  writeDocument('feedItems', feedItem);
+
+  return feedItem;
+}
+
+app.post('/feeditem/:feedItemId/comment', validate({ body: CommentUpdateSchema}), function(req, res) {
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if(fromUser === body.userId) {
+    var newUpdate = postComment(req.params.feedItemId, body.userId, body.contents);
+
+    res.status(201);
+    res.set('/feeditem/' + newUpdate._id);
+    res.send(newUpdate);
+  } else {
+    res.status(401).end();
+  }
+});
+
+function postStatusUpdate(user, location, contents){
+  var time = new Date().getTime();
+  var newStatusUpdate = {
+    "likeCounter": [], "type": "statusUpdate",
+    "contents": {
+      "author": user,
+      "postDate": time,
+      "location": location,
+      "contents": contents,
+      "likeCounter": []
+    },
+    "comments": []
+  };
+  newStatusUpdate = addDocument('feedItems', newStatusUpdate);
+
+  var userData = doc.readDocument('users', user);
+  var feedData = doc.readDocument('feeds', userData.feed);
+  feedData.contents.unshift(newStatusUpdate._id);
+  writeDocument('feeds', feedData);
+  return newStatusUpdate;
+}
+
+app.post('/feeditem', validate({ body: StatusUpdateSchema}), function(req, res) {
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if(fromUser === body.userId) {
+    var newUpdate = postStatusUpdate(body.userId, body.location, body.contents);
+
+    res.status(201);
+    res.set('Location', '/feeditem/' + newUpdate._id);
+    res.send(newUpdate);
+  } else {
+    res.status(401).end();
+  }
+});
+
+//---------------------------------Forum Stuff Ends-------------------------------
+
+
 //games index
 app.get('/game', function (req, res) {
   res.send(readEntireDocument('games'));
