@@ -46,74 +46,6 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
-//---------------------------------Forum Stuff Starts-----------------------------
-
-function postComment(feedItemId, user, contents){
-  var comment = {
-    "author": user,
-    "contents": contents,
-    "postDate": new Date().getTime(),
-    "likeCounter": []
-  };
-  var feedItem = doc.readDocument('feedItems', feedItemId);
-  feedItem.comments.push(comment);
-  writeDocument('feedItems', feedItem);
-
-  return feedItem;
-}
-
-app.post('/feeditem/:feedItemId/comment', validate({ body: CommentUpdateSchema}), function(req, res) {
-  var body = req.body;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  if(fromUser === body.userId) {
-    var newUpdate = postComment(req.params.feedItemId, body.userId, body.contents);
-
-    res.status(201);
-    res.set('/feeditem/' + newUpdate._id);
-    res.send(newUpdate);
-  } else {
-    res.status(401).end();
-  }
-});
-
-function postStatusUpdate(user, location, contents){
-  var time = new Date().getTime();
-  var newStatusUpdate = {
-    "likeCounter": [], "type": "statusUpdate",
-    "contents": {
-      "author": user,
-      "postDate": time,
-      "location": location,
-      "contents": contents,
-      "likeCounter": []
-    },
-    "comments": []
-  };
-  newStatusUpdate = addDocument('feedItems', newStatusUpdate);
-
-  var userData = doc.readDocument('users', user);
-  var feedData = doc.readDocument('feeds', userData.feed);
-  feedData.contents.unshift(newStatusUpdate._id);
-  writeDocument('feeds', feedData);
-  return newStatusUpdate;
-}
-
-app.post('/feeditem', validate({ body: StatusUpdateSchema}), function(req, res) {
-  var body = req.body;
-  var fromUser = getUserIdFromToken(req.get('Authorization'));
-  if(fromUser === body.userId) {
-    var newUpdate = postStatusUpdate(body.userId, body.location, body.contents);
-
-    res.status(201);
-    res.set('Location', '/feeditem/' + newUpdate._id);
-    res.send(newUpdate);
-  } else {
-    res.status(401).end();
-  }
-});
-
-//---------------------------------Forum Stuff Ends-------------------------------
-
 
 //games index
 //obsolete, this pulls static data not stuff from the api
@@ -138,19 +70,19 @@ app.get('/game/:gameid', function (req, res) {
           var game = query_body[appid];
           if(game.success === true) {
             extend(game, { id: appid, appid: appid, name: game.data.name }); //initial data
-            
+
             //pull out prices
             if(game.data.price_overview) { //some games are free
               var original_price = game.data.price_overview.initial;
               var final_price = game.data.price_overview.final;
               var future_price = futurePrice(final_price);
-              extend(game, {original_price: original_price, final_price: final_price, 
+              extend(game, {original_price: original_price, final_price: final_price,
                 future_price: future_price}); //put them in the root
             }
             games.push(game); //add to our running list
           }
         });
-      } else 
+      } else
         games.push("error on appid " + item);
 
       //if this is the last thing we can return
@@ -170,7 +102,7 @@ app.get('/games/popular', function (req, res) {
       query_body.forEach(function (item) {
         extend(item, { future_price: futurePrice(item.final_price) });
       });
-      res.send(query_body); 
+      res.send(query_body);
     }
   });
 });
@@ -183,7 +115,7 @@ app.get('/games/pricey', function (req, res) {
       query_body.forEach(function (item) {
         extend(item, { future_price: futurePrice(item.final_price) })
       });
-      res.send(query_body); 
+      res.send(query_body);
     }
   });
 });
