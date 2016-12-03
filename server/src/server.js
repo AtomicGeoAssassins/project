@@ -68,7 +68,7 @@ app.get('/game/:gameid', function (req, res) {
         Object.keys(query_body).forEach(function (appid) {
           var game = query_body[appid];
           if(game.success === true) {
-            extend(game, { appid: appid, name: game.data.name }); //initial data
+            extend(game, { id: appid, appid: appid, name: game.data.name }); //initial data
             
             //pull out prices
             if(game.data.price_overview) { //some games are free
