@@ -29,26 +29,27 @@ export default class MyProfile extends React.Component {
   }
 
   render() {
+    var user = this.state.user ? this.state.user : {}
 
     return (
       <div className="">
         <div className="">
           <div className="col-md-3">
             <button className="btn" type="button">Edit Profile</button>
-            <h2>{this.state.user.userName}</h2>
+            <h2>{user.userName}</h2>
             <img src="img/temporary_profile.png" width="5%" />
             <h3>Bio:</h3>
-            <p>{this.state.user.bio}</p>
+            <p>{user.bio}</p>
             <h3>Email:</h3>
-            <p>{this.state.user.eMail}</p>
+            <p>{user.eMail}</p>
             <h3>Steam Account:</h3>
-            <p>{this.state.user.steamAccount}</p>
+            <p>{user.steamAccount}</p>
             <h3>Company:</h3>
-            <p>{this.state.user.companyName}</p>
+            <p>{user.companyName}</p>
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
-            <GamesTable games={this.state.games} user={this.state.user} />
+            <GamesTable games={this.state.games} user={Object.keys(user).length == 0 ? undefined : user} />
           </div>
         </div>
       </div>

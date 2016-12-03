@@ -1,13 +1,28 @@
 import React from 'react';
-import {adjustPrice,watchGame,unwatchGame} from '../server';
+import {adjustPrice,watchGame,unwatchGame,getUserData} from '../server';
 
 export default class GamesTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       contents: [],
+      user: this.props.user, //in case we wanted to fetch from a different user
       watchList: ""
     };
+  }
+
+  componentDidMount() {
+    if(!this.props.user) //dont redefine
+      getUserData("4", (user) => {
+        this.setState({"user": user });
+      });
+  }
+
+  refresh() { 
+    //get latest
+    getUserData("4", (user) => {
+      this.setState({"user": user });
+    });
   }
 
   render() {
@@ -16,10 +31,10 @@ export default class GamesTable extends React.Component {
       if(!user) return; //will rerender latter
       if(user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
-        return (<a href="#" onClick={ () => { watchGame(user.id,appid,() => { this.setState(this.state); });}}>Watch Game</a>);
+        return (<a href="#" onClick={ () => { watchGame(user.id,appid,() => { this.refresh();})}}>Watch Game</a>);
       } else {
         //render link to unwatch it
-        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,() => { this.setState(this.state); }); }}>Unwatch Game</a>);
+        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,() => { this.refresh();})}}>Unwatch Game</a>);
       }
     };
 
@@ -32,7 +47,7 @@ export default class GamesTable extends React.Component {
               <td>{adjustPrice(game.original_price)}</td>
               <td>{adjustPrice(game.final_price)}</td>
               <td>{adjustPrice(game.future_price)}</td>
-              <td>{renderActions(game.id,this.props.user)}</td>
+              <td>{renderActions(game.id,this.state.user)}</td>
             </tr>
           )
         })

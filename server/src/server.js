@@ -146,6 +146,7 @@ app.put('/user/:id/watchlist/:appid', function (req, res) {
 });
 
 app.delete('/user/:id/watchlist/:appid', function (req, res) {
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(req.params.id, 10);
   if(fromUser==useridNumber) {
     var user = readDocument('users', useridNumber);
