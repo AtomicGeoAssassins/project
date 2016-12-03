@@ -1,6 +1,6 @@
 // Your startup's initial mock objects go here
 var initialData = {
-  "games": [
+  "games": [ //these games are obsolete, we pull from the steam api
     {
       "_id": 1,
       "title": "Fake Game 1",
@@ -131,6 +131,7 @@ var initialData = {
   "users":{
     "1":
       {
+        "_id": 1,
         "userName": "Temp1",
         "bio": "Hi! My name is Temp1!",
         "eMail": "temp1@gmail.com",
@@ -140,6 +141,7 @@ var initialData = {
       },
     "2":
       {
+        "_id": 2,
         "userName": "Temp2",
         "bio": "Hi! My name is Temp2!",
         "eMail": "temp2@gmail.com",
@@ -149,6 +151,7 @@ var initialData = {
       },
     "3":
       {
+        "_id": 3,
         "userName": "Temp3",
         "bio": "Hi! My name is Temp3!",
         "eMail": "temp3@gmail.com",
@@ -158,64 +161,21 @@ var initialData = {
       },
     "4":
       {
+        "_id": 4,
         "userName": "Temp4",
         "bio": "Hi! My name is Temp4!",
         "eMail": "temp4@gmail.com",
         "steamAccount": "tempFour",
         "companyName": "Team123",
-        "watchList": [1,2,3]
+        "watchList": [311210, 504370]
       },
     "5":
       {
+        "_id": 5,
         "userName": "Temp5",
         "bio": "Hi! My name is Temp5!",
         "eMail": "temp5@gmail.com",
         "steamAccount": "tempFive",
-        "companyName": "Team123",
-        "watchList": [1,2,3]
-      },
-    "6":
-      {
-        "userName": "Temp6",
-        "bio": "Hi! My name is Temp6!",
-        "eMail": "temp6@gmail.com",
-        "steamAccount": "tempSix",
-        "companyName": "Team123",
-        "watchList": [1,2,3]
-      },
-    "7":
-      {
-        "userName": "Temp7",
-        "bio": "Hi! My name is Temp7!",
-        "eMail": "temp7@gmail.com",
-        "steamAccount": "tempSeven",
-        "companyName": "Team123",
-        "watchList": [1,2,3]
-      },
-    "8":
-      {
-        "userName": "Temp8",
-        "bio": "Hi! My name is Temp8!",
-        "eMail": "temp8@gmail.com",
-        "steamAccount": "tempEight",
-        "companyName": "Team123",
-        "watchList": [1,2,3]
-      },
-    "9":
-      {
-        "userName": "Temp9",
-        "bio": "Hi! My name is Temp9!",
-        "eMail": "temp9@gmail.com",
-        "steamAccount": "tempNine",
-        "companyName": "Team123",
-        "watchList": [1,2,3]
-      },
-    "10":
-      {
-        "userName": "Temp10",
-        "bio": "Hi! My name is Temp10!",
-        "eMail": "temp10@gmail.com",
-        "steamAccount": "tempTen",
         "companyName": "Team123",
         "watchList": [1,2,3]
       }
