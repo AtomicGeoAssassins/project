@@ -124,7 +124,7 @@ app.get('/user/:id', function (req, res) {
   var useridNumber = parseInt(userid, 10);
   if (fromUser === useridNumber) {
     // Send response.
-    res.send(readDocument('users',userid));
+    res.send(extend(readDocument('users',userid),{id: userid}));
   } else {
     // 401: Unauthorized request.
     res.status(401).end();
@@ -133,10 +133,12 @@ app.get('/user/:id', function (req, res) {
 
 app.put('/user/:id/watchlist/:appid', function (req, res) {
   console.log("watching game " + req.params.appid + " for " + req.params.id);
+  res.send();
 });
 
 app.delete('/user/:id/watchlist/:appid', function (req, res) {
   console.log("unwatching game " + req.params.appid + " for " + req.params.id);
+  res.send();
 });
 
 // Reset database.
