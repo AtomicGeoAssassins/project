@@ -12,7 +12,7 @@ export default class GamesTable extends React.Component {
 
   render() {
     var watchList;
-    var renderActions = function (appid) {
+    var renderActions = (appid) => {
       if(this.props.user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
         return (<a href="#" onClick={watchGame(this.props.user.id,appid,undefined)}>Watch Game</a>);

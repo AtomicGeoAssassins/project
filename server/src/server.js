@@ -132,11 +132,11 @@ app.get('/user/:id', function (req, res) {
 });
 
 app.put('/user/:id/watchlist/:appid', function (req, res) {
-
+  console.log("watching game " + req.params.appid + " for " + req.params.id);
 });
 
 app.delete('/user/:id/watchlist/:appid', function (req, res) {
-
+  console.log("unwatching game " + req.params.appid + " for " + req.params.id);
 });
 
 // Reset database.

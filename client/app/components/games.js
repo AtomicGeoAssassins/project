@@ -1,5 +1,5 @@
 import React from 'react';
-import {getPopularGameData} from '../server';
+import {getPopularGameData, getUserData} from '../server';
 import {setActiveNavLink} from '../server';
 import GamesTable from './gamesTable';
 export default class Games extends React.Component {
