@@ -12,14 +12,14 @@ export default class GamesTable extends React.Component {
 
   render() {
     var watchList;
-    var renderActions = (appid) => {
-      if(!this.props.user) return; //will rerender latter
-      if(this.props.user.watchList.indexOf(appid) == -1) { //is not watching game
+    var renderActions = (appid,user) => {
+      if(!user) return; //will rerender latter
+      if(user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
-        return (<a href="#" onClick={ () => { watchGame(this.props.user.id,appid,undefined) }}>Watch Game</a>);
+        return (<a href="#" onClick={ () => { watchGame(user.id,appid,undefined) }}>Watch Game</a>);
       } else {
         //render link to unwatch it
-        return (<a href="#" onClick={ () => { unwatchGame(this.props.user.id,appid,undefined) }}>Unwatch Game</a>);
+        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,undefined) }}>Unwatch Game</a>);
       }
     };
 
@@ -33,7 +33,7 @@ export default class GamesTable extends React.Component {
               <td>{adjustPrice(game.original_price)}</td>
               <td>{adjustPrice(game.final_price)}</td>
               <td>{adjustPrice(game.future_price)}</td>
-              <td>{renderActions(game.id)}</td>
+              <td>{renderActions(game.id,this.props.user)}</td>
             </tr>
           )
         })

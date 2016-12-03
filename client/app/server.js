@@ -121,11 +121,11 @@ export function getForumData(cb) {
 }
 
 export function unwatchGame(userid,appid,cb) {
-  sendXHR('PUT', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+  sendXHR('DELETE', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function watchGame(userid,appid,cb) {
-  sendXHR('DELETE', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+  sendXHR('PUT', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 //export function getUserData(cb) {
