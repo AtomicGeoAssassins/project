@@ -1,18 +1,30 @@
 import React from 'react';
 import {adjustPrice} from '../server';
+
 export default class GamesTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       contents: [],
       watchList: "",
-      games: props.games
+      games: props.games,
+      user: props.user
     };
   }
 
   render() {
     var watchList;
-    
+    var renderActions = function (appid) {
+      if(this.props.user.watchList.indexOf(appid) == -1) { //is not watching game
+        //render link to watch it
+
+      } else {
+        //render link to unwatch it
+
+      }
+    };
+
+
     if(this.props.games) {
       watchList = (
         this.props.games.map((game,i) => {
@@ -22,6 +34,7 @@ export default class GamesTable extends React.Component {
               <td>{adjustPrice(game.original_price)}</td>
               <td>{adjustPrice(game.final_price)}</td>
               <td>{adjustPrice(game.future_price)}</td>
+              <td>{renderActions(game.appid)}</td>
             </tr>
           )
         })
@@ -37,6 +50,7 @@ export default class GamesTable extends React.Component {
               <th>Tomorrow Price</th>
               <th>Yesterdays Price</th>
               <th>Last Months Price</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
