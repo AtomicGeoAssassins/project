@@ -7,8 +7,7 @@ export default class GamesTable extends React.Component {
     this.state = {
       contents: [],
       watchList: "",
-      games: props.games,
-      user: props.user
+      games: props.games
     };
   }
 
@@ -17,10 +16,10 @@ export default class GamesTable extends React.Component {
     var renderActions = function (appid) {
       if(this.props.user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
-
+        return ();
       } else {
         //render link to unwatch it
-
+        return (<a href="#" onClick={}>Unwatch</a>);
       }
     };
 

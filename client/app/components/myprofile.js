@@ -9,7 +9,6 @@ export default class MyProfile extends React.Component {
     super(props);
     this.state = {
       contents: [],
-      user: "",
       watchList: ""
     };
   }
@@ -49,7 +48,7 @@ export default class MyProfile extends React.Component {
           </div>
           <div className="col-md-9">
             <h2>Watch List</h2>
-            <GamesTable games={this.state.games} />
+            <GamesTable games={this.state.games} user={this.state.user} />
           </div>
         </div>
       </div>

@@ -23,6 +23,10 @@ export default class Home extends React.Component {
     getPriceyGameData((games) => {
       this.setState({ "priceyGames": games });
     });
+
+    getUserData("4", (user) => {
+      this.setState({"user": user });
+    });
   }
 
   render() {
@@ -31,7 +35,7 @@ export default class Home extends React.Component {
       <h2>Featured Games</h2>
       <GamesTable games={this.state.popularGames} />
       <h2>Highest Priced Games</h2>
-      <GamesTable games={this.state.priceyGames} />
+      <GamesTable games={this.state.priceyGames} user={this.state.user} />
     </div>
     );
   }

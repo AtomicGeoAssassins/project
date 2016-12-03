@@ -18,13 +18,16 @@ export default class Games extends React.Component {
     getPopularGameData((games) => {
       this.setState({ "games": games });
     });
+    getUserData("4", (user) => {
+      this.setState({"user": user });
+    });
   }
   render(){
     return(
       <div>
         <div>
           <h2>List of Games</h2>
-          <GamesTable games={this.state.games} />
+          <GamesTable games={this.state.games} user={this.state.user} />
         </div>
       </div>
     );
