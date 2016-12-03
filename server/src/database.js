@@ -1,93 +1,90 @@
 // Your startup's initial mock objects go here
 var initialData = {
-  "games": [ //these games are obsolete, we pull from the steam api
+  "boards": [
     {
-      "_id": 1,
-      "title": "Fake Game 1",
-      "beforePrice": "59.99",
-      "currentPrice": "49.99",
-      "futurePrice": "39.99",
-      "steamLink": 1
+      "title": "general",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
     {
-      "_id": 2,
-      "title": "Fake Game 2",
-      "beforePrice": "9.99",
-      "currentPrice": "7.99",
-      "futurePrice": "5.99",
-      "steamLink": 2
+      "title": "favorite",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
     {
-      "_id": 3,
-      "title": "Fake Game 3",
-      "beforePrice": "19.99",
-      "currentPrice": "14.99",
-      "futurePrice": "9.99",
-      "steamLink": 3
+      "title": "offtopic",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
     {
-      "_id": 4,
-      "title": "Fake Game 4",
-      "beforePrice": "14.99",
-      "currentPrice": "9.99",
-      "futurePrice": "4.99",
-      "steamLink": 4
+      "title": "predictions",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
     {
-      "_id": 5,
-      "title": "Fake Game 5",
-      "beforePrice": "3.99",
-      "currentPrice": "2.99",
-      "futurePrice": "1.99",
-      "steamLink": 5
-    }
-  ],
-  "forum": [
-    {
-      "_id": 1,
-      "title": "Jimmy Carter",
-      "postTitle": "Welcome",
-      "insideData": "Hello, i was one of the presidents, i may be old now but im still effective",
-      "comment1": "Dummy comment",
-      "comment2": "Dummy comment",
-      "comment3": "Dummy comment"
+      "title": "price",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
     {
-      "_id": 2,
-      "title": "Eric Johnson",
-      "postTitle": "Workshop 5",
-      "insideData": "I dont even know what im doing here",
-      "comment1": "Dummy comment",
-      "comment2": "Dummy comment",
-      "comment3": "Dummy comment"
+      "title": "support",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": 4
+            }
+          ]
+        }
+      ]
     },
-    {
-      "_id": 3,
-      "title": "William Shakespeare",
-      "postTitle": "New game for sale",
-      "insideData": "Selling call of duty modern warfare 7 for 29.99",
-      "comment1": "Dummy comment",
-      "comment2": "Dummy comment",
-      "comment3": "Dummy comment"
-    },
-    {
-      "_id": 4,
-      "title": "Theo Cortez",
-      "postTitle": "Games page not loading",
-      "insideData": "For some reason during the page load, my computer updates from linux to fedora",
-      "comment1": "Dummy comment",
-      "comment2": "Dummy comment",
-      "comment3": "Dummy comment"
-    },
-    {
-      "_id": 5,
-      "title": "Tom Peck",
-      "postTitle": "I need money",
-      "insideData": "Hey I gambled all of my money away",
-      "comment1": "Dummy comment",
-      "comment2": "Dummy comment",
-      "comment3": "Dummy comment"
-    }
   ],
   "users":{
     "1":
