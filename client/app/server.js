@@ -10,16 +10,23 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
+export function adjustPrice(price) {
+  if(price == null || price == 0) return "Free!";
+  price = price.toString();
+  return "$" + price.slice(0,price.length-2) + "." + price.slice(price.length-2,price.length);
+}
+
 export function setActiveNavLink(page){
   $(document).ready(function () {
     $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
-    $("#mainNavLinks li").filter(":contains('" + page + "')").addClass("active"); //add to the requested one
+    if(page != "")
+      $("#mainNavLinks li").filter(":contains('" + page + "')").addClass("active"); //add to the requested one
   });
   //$("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
   //if(index === 0)
-    //$("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
+  //$("#mainNavLinks li:nth-child(1)").addClass("active"); //add active class to home in this case
   //else
-    //$("#mainNavLinks li:nth-child(" + index +")").addClass("active"); //add active class to the caller
+  //$("#mainNavLinks li:nth-child(" + index +")").addClass("active"); //add active class to the caller
 }
 
 var token = 'eyJpZCI6NH0='; //this is constant for now
@@ -163,15 +170,19 @@ function useCB(xhr,cb) {
 }
 
 export function getGameData(cb) {
-  sendXHR('GET', '/game', undefined, (xhr) => { useCB(xhr,cb) });
+  sendXHR('GET', '/games', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function getGameById(id,cb) {
+  sendXHR('GET', '/game/'+id, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getPopularGameData(cb) {
-  sendXHR('GET', '/game/popular', undefined, (xhr) => { useCB(xhr,cb) });
+  sendXHR('GET', '/games/popular', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getPriceyGameData(cb) {
-  sendXHR('GET', '/game/pricey', undefined, (xhr) => { useCB(xhr,cb) });
+  sendXHR('GET', '/games/pricey', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function getUserData(userID, cb) {
@@ -182,7 +193,15 @@ export function getForumData(cb) {
   sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
+export function unwatchGame(userid,appid,cb) {
+  sendXHR('DELETE', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function watchGame(userid,appid,cb) {
+  sendXHR('PUT', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
 //export function getUserData(cb) {
-  //var userData = readEntireDocument('users');
-  //emulateServerReturn(userData, cb);
+//var userData = readEntireDocument('users');
+//emulateServerReturn(userData, cb);
 //}
