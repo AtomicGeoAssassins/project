@@ -120,6 +120,14 @@ export function getForumData(cb) {
   sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
+export function unwatchGame(userid,appid,cb) {
+  sendXHR('PUT', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function watchGame(userid,appid,cb) {
+  sendXHR('DELETE', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
 //export function getUserData(cb) {
 //var userData = readEntireDocument('users');
 //emulateServerReturn(userData, cb);

@@ -131,6 +131,14 @@ app.get('/user/:id', function (req, res) {
   }
 });
 
+app.put('/user/:id/watchlist/:appid', function (req, res) {
+
+});
+
+app.delete('/user/:id/watchlist/:appid', function (req, res) {
+
+});
+
 // Reset database.
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
