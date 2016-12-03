@@ -16,13 +16,12 @@ export default class GamesTable extends React.Component {
       if(!user) return; //will rerender latter
       if(user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
-        return (<a href="#" onClick={ () => { watchGame(user.id,appid,() => { this.render(); });}}>Watch Game</a>);
+        return (<a href="#" onClick={ () => { watchGame(user.id,appid,() => { this.setState(this.state); });}}>Watch Game</a>);
       } else {
         //render link to unwatch it
-        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,() => { this.render(); }); }}>Unwatch Game</a>);
+        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,() => { this.setState(this.state); }); }}>Unwatch Game</a>);
       }
     };
-
 
     if(this.props.games) {
       watchList = (

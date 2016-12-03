@@ -132,13 +132,11 @@ app.get('/user/:id', function (req, res) {
 });
 
 app.put('/user/:id/watchlist/:appid', function (req, res) {
-  console.log("watching game " + req.params.appid + " for " + req.params.id);
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   var useridNumber = parseInt(req.params.id, 10);
   if(fromUser==useridNumber) {
     var user = readDocument('users', useridNumber);
     user.watchList.push(parseInt(req.params.appid));
-    console.log(JSON.stringify(user));
     writeDocument('users', user); //rewrite
     res.send(user); //reply empty status
   } else {
@@ -148,8 +146,19 @@ app.put('/user/:id/watchlist/:appid', function (req, res) {
 });
 
 app.delete('/user/:id/watchlist/:appid', function (req, res) {
-  console.log("unwatching game " + req.params.appid + " for " + req.params.id);
-  res.send();
+  var useridNumber = parseInt(req.params.id, 10);
+  if(fromUser==useridNumber) {
+    var user = readDocument('users', useridNumber);
+    var appIndex = user.watchList.indexOf(parseInt(req.params.appid));
+    if (appIndex !== -1) {
+      user.watchList.splice(appIndex, 1);
+      writeDocument('users', user);
+    }
+    res.send(user); //reply empty status
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
+  }
 });
 
 // Reset database.
