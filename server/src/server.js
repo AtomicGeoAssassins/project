@@ -68,12 +68,16 @@ app.get('/game/:gameid', function (req, res) {
         Object.keys(query_body).forEach(function (appid) {
           var game = query_body[appid];
           if(game.success === true) {
+            extend(game, { appid: appid, name: game.data.name }); //initial data
+            
             //pull out prices
-            var original_price = game.data.price_overview.initial;
-            var final_price = game.data.price_overview.final;
-            var future_price = futurePrice(final_price);
-            extend(game, {original_price: original_price, final_price: final_price, 
-              future_price: future_price, appid: appid, name: game.data.name }); //put them in the root
+            if(game.data.price_overview) { //some games are free
+              var original_price = game.data.price_overview.initial;
+              var final_price = game.data.price_overview.final;
+              var future_price = futurePrice(final_price);
+              extend(game, {original_price: original_price, final_price: final_price, 
+                future_price: future_price}); //put them in the root
+            }
             games.push(game); //add to our running list
           }
         });

@@ -19,7 +19,8 @@ export function adjustPrice(price) {
 export function setActiveNavLink(page){
   $(document).ready(function () {
     $("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
-    $("#mainNavLinks li").filter(":contains('" + page + "')").addClass("active"); //add to the requested one
+    if(page != "")
+      $("#mainNavLinks li").filter(":contains('" + page + "')").addClass("active"); //add to the requested one
   });
   //$("#mainNavLinks li.active").removeClass("active"); //first things first remove active from old class
   //if(index === 0)

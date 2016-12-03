@@ -1,12 +1,13 @@
 import React from 'react';
 import {getUserData, adjustPrice} from '../server';
-import {getGameData, getGameById} from '../server';
+import {getGameData, getGameById, setActiveNavLink} from '../server';
 import GamesTable from './gamesTable';
 import {Link} from 'react-router';
 export default class MyProfile extends React.Component {
 
   constructor(props) {
     super(props);
+    setActiveNavLink("");
     this.state = {
       contents: [],
       watchList: ""
