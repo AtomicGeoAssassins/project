@@ -46,7 +46,6 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
-
 //games index
 //obsolete, this pulls static data not stuff from the api
 //dont use me
@@ -56,10 +55,9 @@ app.get('/games', function (req, res) {
 
 var futurePrice = function (final_price) { return Math.floor(final_price/2); }
 
-//retrieve a game
-app.get('/game/:gameid', function (req, res) {
+function lookupGame(gameid){
   var games = []; //this will hold our games
-  var appids = req.params.gameid.trim().split(',');
+  var appids = gameid.trim().split(',');
   appids.forEach(function (item) { //fyi foreach is not async
     request('http://store.steampowered.com/api/appdetails/?appids=' + item, function (error, query_response, query_body) {
       if (!error && query_response.statusCode == 200) {
@@ -87,11 +85,17 @@ app.get('/game/:gameid', function (req, res) {
 
       //if this is the last thing we can return
       if(games.length >= appids.length) {
-        res.send(games); //after each send the response
-        return;
+        return games;
       }
     });
   });
+}
+
+
+//retrieve a game
+app.get('/game/:gameid', function (req, res) {
+  var game = lookupGame(req.params.gameid);
+  res.send(game);
 });
 
 //popular games
@@ -174,6 +178,23 @@ app.post('/resetdb', function(req, res) {
   database.resetDatabase();
   // res.send() sends an empty response with status code 200
   res.send();
+});
+
+//work in progress
+app.post('/search/:query', function(req, res){
+  var games = [];
+  request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
+    if (!error && query_response.statusCode == 200) {
+      query_body = JSON.parse(query_body).applist.apps.app; //parse
+      query_body.forEach(function (item,index){
+        if(item.name.toUpperCase().includes(req.params.query.toUpperCase())) {
+          var x = { id: item.appid};
+          games.push(x);
+        }
+      });
+      res.send(games);
+    }
+  });
 });
 
 /**
