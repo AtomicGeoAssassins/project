@@ -3,7 +3,136 @@ var ObjectID = require('mongodb').ObjectID;
 // Put your startup's name here (only letters and numbers -- no spaces, apostrophes, or special characters!)
 var databaseName = null;
 // Put the initial mock objects here.
-var initialData = null;
+var initialData = {
+  "boards": [
+    {
+      "title": "general",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "favorite",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "offtopic",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "predictions",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "price",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "support",
+      "topics": [
+        {
+          "title": "alpacas are smelly",
+          "replies": [
+            {
+              "content": "i agree",
+              "_id": new ObjectID(4)
+            }
+          ]
+        }
+      ]
+    },
+  ],
+  "users":{
+    "1":
+      {
+        "_id": new ObjectID(1),
+        "userName": "Temp1",
+        "bio": "Hi! My name is Temp1!",
+        "eMail": "temp1@gmail.com",
+        "steamAccount": "tempOne",
+        "companyName": "Team123",
+        "watchList": [1,2,3]
+      },
+    "2":
+      {
+        "_id": new ObjectID(2),
+        "userName": "Temp2",
+        "bio": "Hi! My name is Temp2!",
+        "eMail": "temp2@gmail.com",
+        "steamAccount": "tempTwo",
+        "companyName": "Team123",
+        "watchList": [1,2,3]
+      },
+    "3":
+      {
+        "_id": new ObjectID(3),
+        "userName": "Temp3",
+        "bio": "Hi! My name is Temp3!",
+        "eMail": "temp3@gmail.com",
+        "steamAccount": "tempThree",
+        "companyName": "Team123",
+        "watchList": [1,2,3]
+      },
+    "4":
+      {
+        "_id": new ObjectID(4),
+        "userName": "Temp4",
+        "bio": "Hi! My name is Temp4!",
+        "eMail": "temp4@gmail.com",
+        "steamAccount": "tempFour",
+        "companyName": "Team123",
+        "watchList": [311210, 504370]
+      }
+  }
+};
 
 /**
  * Resets a collection.
