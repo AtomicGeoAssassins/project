@@ -61,9 +61,9 @@ export default class GamesTable extends React.Component {
           <thead className="baby-blue-header">
             <tr>
               <th>Game</th>
-              <th>Tomorrow Price</th>
-              <th>Yesterdays Price</th>
-              <th>Last Months Price</th>
+              <th>Original Price</th>
+              <th>Today's Price</th>
+              <th>Next Months Price</th>
               <th>Actions</th>
             </tr>
           </thead>
