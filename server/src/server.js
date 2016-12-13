@@ -113,6 +113,7 @@ app.get('/games/popular', function (req, res) {
 
 //popular games
 app.get('/games/pricey', function (req, res) {
+  console.log("here");
   request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
     if (!error && query_response.statusCode == 200) {
       query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
@@ -181,13 +182,19 @@ app.post('/resetdb', function(req, res) {
 });
 
 //work in progress
-app.post('/search/:query', function(req, res){
+app.post('/search/', function(req, res){
+  var input = JSON.parse(req.body);
+  if(!input.query){
+    res.status(422).send();
+    return;
+  }
+
   var games = [];
   request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
     if (!error && query_response.statusCode == 200) {
       query_body = JSON.parse(query_body).applist.apps.app; //parse
-      query_body.forEach(function (item,index){
-        if(item.name.toUpperCase().includes(req.params.query.toUpperCase())) {
+      query_body.forEach(function (item){
+        if(item.name.toUpperCase().includes(input.query.toUpperCase())) {
           var x = { id: item.appid};
           games.push(x);
         }

@@ -1,57 +1,42 @@
 import React from 'react';
-import {getGameData} from '../server';
+import GamesTable from './gamesTable';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, getUserData} from '../server';
 
-export default class Searchresults extends React.Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    setActiveNavLink("");
     this.state = {
-      contents: []
+      page: "searchresults"
     };
   }
+
   componentDidMount() {
     this.refresh();
   }
 
   refresh() {
-    getGameData((games) => {
-      this.setState({ "games": games });
+    getPopularGameData((games) => {
+      this.setState({ "popularGames": games });
+    });
+
+    getPriceyGameData((games) => {
+      this.setState({ "priceyGames": games });
+    });
+
+    getUserData("4", (user) => {
+      this.setState({"user": user });
     });
   }
-  render(){
-    var Games;
-    if(this.state.games) {
-      Games = (
-        this.state.games.map((game,i) => {
-          return (
-            <tr key={"line"+i}>
-              <td>{game.title}</td>
-              <td>{game.beforePrice}</td>
-              <td>{game.currentPrice}</td>
-              <td>{game.futurePrice}</td>
-            </tr>
-          )
-        })
-      );
-    }
-    return(
-      <div>
-        <div>
-          <h2>Search Results</h2>
-          <table className="table table-hover">
-            <thead className="baby-blue-header">
-              <tr>
-                <th>Game</th>
-                <th>Tomorrow's Price</th>
-                <th>Yesterday's Price</th>
-                <th>Last Month's Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Games}
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+  render() {
+    return (
+    <div>
+      <h2>Featured Games</h2>
+      <GamesTable games={this.state.popularGames} user={this.state.user} />
+      <h2>Highest Priced Games</h2>
+      <GamesTable games={this.state.priceyGames} user={this.state.user} />
+    </div>
     );
   }
 }

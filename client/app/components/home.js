@@ -1,5 +1,5 @@
 import React from 'react';
-import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData} from '../server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from '../server';
 import {Link} from 'react-router';
 import GamesTable from './gamesTable';
 export default class Home extends React.Component {
