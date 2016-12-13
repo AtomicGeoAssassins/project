@@ -185,6 +185,17 @@ export function getPriceyGameData(cb) {
   sendXHR('GET', '/games/pricey', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
+export function postSearchGameData(cb,query) {
+  sendXHR('POST', '/search/'+query, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function searchForFeedItems(userID, queryText, cb) {
+  // userID is not needed; it's included in the JSON web token.
+  sendXHR('POST', '/search',JSON.stringify({query: queryText}), (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+}
+
 export function getUserData(userID, cb) {
   sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) });
 }
