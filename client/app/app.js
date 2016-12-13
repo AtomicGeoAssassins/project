@@ -4,10 +4,9 @@ import Home from './components/home';
 import Support from './components/support';
 import Navbar from './components/navbar';
 import Forum from './components/forum/forum';
-import { searchForFeedItems} from './server';
 import {hideElement} from './components/util.js';
 import GamesTable from './components/gamesTable';
-import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from '../server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from './server';
 
 import Favorite from './components/forum/forumTopics/favorite';
 import General from './components/forum/forumTopics/general';
