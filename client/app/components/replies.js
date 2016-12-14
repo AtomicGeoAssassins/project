@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActiveNavLink, getTopics} from '../server';
+import {setActiveNavLink, getReplies} from '../server';
 import { Router, Link } from 'react-router';
 export default class Replies extends React.Component {
   constructor(props) {
@@ -9,26 +9,28 @@ export default class Replies extends React.Component {
   }
 
   componentDidMount() {
-    getTopics(this.props.id, (topics) => {
-      this.setState({topics: topics});
-    });
+    if(this.props.params.id) {
+      getReplies(this.props.params.id, (replies) => {
+        this.setState({replies: replies});
+      });
+    }
   }
 
   render() {
-    var topics;
+    var replies;
 
-    if(this.state.topics) {
-      topics = this.state.topics.map((topic) => {
+    if(this.state.replies) {
+      replies = this.state.replies.map((reply) => {
         return (
-          <li className="list-group-item">{topic.name}</li>
+          <li className="list-group-item" >{reply.content}</li>
         );
       });
     }
     return (
       <div className="">
-        <h1>Topics List</h1>
+        <h1>Replies</h1>
         <ul className="list-group">
-          {topics}
+          {replies}
         </ul>
       </div>
     );

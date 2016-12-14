@@ -208,6 +208,10 @@ export function getTopics(boardId,cb) {
   sendXHR('GET', '/forum/topics/'+boardId, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
+export function getReplies(topicId, cb) {
+  sendXHR('GET', '/forum/replies/'+topicId, undefined, (xhr) => { useCB(xhr,cb) });
+}
+
 export function unwatchGame(userid,appid,cb) {
   sendXHR('DELETE', '/user/'+userid+'/watchlist/'+appid, undefined, (xhr) => { useCB(xhr,cb) });
 }

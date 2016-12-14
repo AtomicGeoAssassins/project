@@ -136,7 +136,7 @@ ReactDOM.render((
 
       <Route path="boards" component={Boards} />
       <Route path="topics/:id" component={Topics} />
-      <Route path="replies/:id" component={Topics} />
+      <Route path="replies/:id" component={Replies} />
 
       <Route path="search" component={SearchResultsPage} />
 

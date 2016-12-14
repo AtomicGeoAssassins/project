@@ -149,7 +149,16 @@ MongoClient.connect(url, function(err, db) {
 
   app.get('/forum/topics/:id', function (req,res) {
     db.collection('boards').findOne({_id: new ObjectID(req.params.id) }, {topics: 1}, function (err,doc) {
-      res.send(doc.topics);
+      if(doc) {
+        res.send(doc.topics);
+      } else res.status(500).end();
+    });
+  });
+
+  app.get('/forum/replies/:id', function (req,res) {
+    db.collection('boards').findOne({ "topics._id": new ObjectID(req.params.id) }, { "topics.replies": 1 }, function (err,doc) {
+      if(err) console.log(err);
+      res.send(doc.topics[0].replies); //will only find one topic
     });
   });
 
