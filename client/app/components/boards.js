@@ -1,9 +1,10 @@
 import React from 'react';
-import {getForumBoards, setActiveNavLink} from '../server';
-export class Boards extends React.Component {
+import {setActiveNavLink, getForumBoards} from '../server';
+export default class Boards extends React.Component {
   constructor(props) {
     super(props);
     setActiveNavLink("Forum");
+    this.state = {};
   }
 
   clickBoard(boardId) {
