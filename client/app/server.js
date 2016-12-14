@@ -204,8 +204,8 @@ export function getForumBoards(cb) {
   sendXHR('GET', '/forum/boards', undefined, (xhr) => { useCB(xhr,cb) });
 }
 
-export function getTopic(boardId,cb) {
-  sendXHR('GET', '/forum/topic/'+boardId, undefined, (xhr) => { useCB(xhr,cb) });
+export function getTopics(boardId,cb) {
+  sendXHR('GET', '/forum/topics/'+boardId, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function unwatchGame(userid,appid,cb) {

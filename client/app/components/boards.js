@@ -8,9 +8,9 @@ export default class Boards extends React.Component {
     this.state = {};
   }
 
-  clickBoard(boardId) {
-    if(boardId) {
-      this.context.router.push({ pathname: "/topics", board: boardId });
+  clickBoard(e) {
+    if(e) {
+      this.props.router.push({ pathname: "/topics", board: boardId });
     }
   }
 
@@ -24,7 +24,8 @@ export default class Boards extends React.Component {
     var boards;
     if(this.state.boards) {
       boards = this.state.boards.map((board) => {
-        return (<li className="list-group-item" key={board._id}><Link>{board.title}</Link></li>);
+        //return (<li className="list-group-item" key={board._id}><a href="#" onClick={(e) => this.clickBoard(e) }>{board.title}</a></li>);
+        return (<li className="list-group-item" key={board._id}><Link to={"/topics/"+board._id}>{board.title}</Link></li>);
       });
     }
 

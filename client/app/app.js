@@ -6,6 +6,7 @@ import Navbar from './components/navbar';
 import Forum from './components/forum/forum';
 import Boards from './components/boards';
 import Topics from './components/topics';
+import Replies from './components/replies';
 import {hideElement} from './components/util.js';
 import GamesTable from './components/gamesTable';
 import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from './server';
@@ -129,23 +130,16 @@ ReactDOM.render((
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="support" component={Support}/>
-      <Route path="forum" component={Forum}/>
       <Route path="home" component={Home} />
       <Route path="myProfile" component={MyProfile} />
       <Route path="games" component={Games} />
 
       <Route path="boards" component={Boards} />
-      <Route path="topics" component={Topics} />
+      <Route path="topics/:id" component={Topics} />
+      <Route path="replies/:id" component={Topics} />
+
       <Route path="search" component={SearchResultsPage} />
 
     </Route>
   </Router>
 ),document.getElementById('main-content'));
-
-//ReactDOM.render((
-  //<Navbar />
-//),document.getElementById('navbar'));
-
-//ReactDOM.render((
-  //<Searchbar />
-//),document.getElementById('searchbar'));

@@ -147,8 +147,10 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  app.get('/forum/topic/:id', function (req,res) {
-
+  app.get('/forum/topics/:id', function (req,res) {
+    db.collection('boards').find({_id: new ObjectID(req.params.id) }, {topics: 1}).toArray(function (err,doc) {
+      res.send(doc);
+    });
   });
 
   //popular games

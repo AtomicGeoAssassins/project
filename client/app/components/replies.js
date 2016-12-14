@@ -1,7 +1,7 @@
 import React from 'react';
 import {setActiveNavLink, getTopics} from '../server';
 import { Router, Link } from 'react-router';
-export default class Topics extends React.Component {
+export default class Replies extends React.Component {
   constructor(props) {
     super(props);
     setActiveNavLink("Forum");
@@ -9,11 +9,9 @@ export default class Topics extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.params.id) {
-      getTopics(this.props.params.id, (topics) => {
-        this.setState({topics: topics});
-      });
-    }
+    getTopics(this.props.id, (topics) => {
+      this.setState({topics: topics});
+    });
   }
 
   render() {
@@ -22,7 +20,7 @@ export default class Topics extends React.Component {
     if(this.state.topics) {
       topics = this.state.topics.map((topic) => {
         return (
-          <li className="list-group-item" key={topic._id}><Link to={"/replies/"+topic._id}>{topic.name}</Link></li>
+          <li className="list-group-item">{topic.name}</li>
         );
       });
     }
