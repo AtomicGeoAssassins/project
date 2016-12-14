@@ -200,8 +200,12 @@ export function getUserData(userID, cb) {
   sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
-export function getForumData(cb) {
-  sendXHR('GET', '/forum', undefined, (xhr) => { useCB(xhr,cb) });
+export function getForumBoards(cb) {
+  sendXHR('GET', '/forum/boards', undefined, (xhr) => { useCB(xhr,cb) });
+}
+
+export function getTopic(boardId,cb) {
+  sendXHR('GET', '/forum/topic/'+boardId, undefined, (xhr) => { useCB(xhr,cb) });
 }
 
 export function unwatchGame(userid,appid,cb) {

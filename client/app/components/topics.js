@@ -11,9 +11,7 @@ export class Boards extends React.Component {
   }
 
   componentDidMount() {
-    getForumBoards((boards) => {
-      this.setState({boards: boards});
-    });
+    
   }
 
   render() {

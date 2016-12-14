@@ -36,7 +36,7 @@ export default class Navbar extends React.Component {
               <li className=""><Link to="/" onClick={this.updateActiveLink.bind(this,1)}>Home</Link></li>
               <li><Link to="/games/" onClick={this.updateActiveLink.bind(this,2)}>Games</Link></li>
               <li><Link to="/about/" onClick={this.updateActiveLink.bind(this,3)}>About</Link></li>
-              <li><Link to="/forum/" onClick={this.updateActiveLink.bind(this,4)}>Forum</Link></li>
+              <li><Link to="/boards/" onClick={this.updateActiveLink.bind(this,4)}>Forum</Link></li>
               <li><Link to="/support/" onClick={this.updateActiveLink.bind(this,5)}>Support</Link></li>
             </ul>
             <div id='searchbar' className="col-sm-3">

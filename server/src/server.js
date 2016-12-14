@@ -147,6 +147,10 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
+  app.get('/forum/topic/:id', function (req,res) {
+
+  });
+
   //popular games
   app.get('/games/pricey', function (req, res) {
     request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
