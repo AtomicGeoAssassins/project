@@ -4,6 +4,8 @@ import Home from './components/home';
 import Support from './components/support';
 import Navbar from './components/navbar';
 import Forum from './components/forum/forum';
+import Boards from './components/boards';
+import Topics from './components/topics';
 import {hideElement} from './components/util.js';
 import GamesTable from './components/gamesTable';
 import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from './server';
@@ -132,12 +134,8 @@ ReactDOM.render((
       <Route path="myProfile" component={MyProfile} />
       <Route path="games" component={Games} />
 
-      <Route path="favorite" component={Favorite} />
-      <Route path="general" component={General} />
-      <Route path="offtopic" component={OffTopic} />
-      <Route path="predictions" component={Predictions} />
-      <Route path="price" component={Price} />
-      <Route path="forumsupport" component={ForumSupport} />
+      <Route path="boards" component={Boards} />
+      <Route path="topics" component={Topics} />
       <Route path="search" component={SearchResultsPage} />
 
     </Route>

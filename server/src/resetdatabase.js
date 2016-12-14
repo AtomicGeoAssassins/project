@@ -13,7 +13,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -27,7 +27,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -41,7 +41,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -55,7 +55,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -69,7 +69,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -83,7 +83,7 @@ var initialData = {
           "replies": [
             {
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }

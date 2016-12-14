@@ -141,6 +141,12 @@ MongoClient.connect(url, function(err, db) {
     });
   }
 
+  app.get('/forum/boards', function (req, res) {
+    db.collection('boards').find({}, { title: 1}).toArray(function (err, doc) {
+      res.send(doc);
+    });
+  });
+
   //popular games
   app.get('/games/pricey', function (req, res) {
     request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
