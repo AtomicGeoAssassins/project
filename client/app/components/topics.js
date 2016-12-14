@@ -22,7 +22,7 @@ export default class Topics extends React.Component {
     if(this.state.topics) {
       topics = this.state.topics.map((topic) => {
         return (
-          <li className="list-group-item" key={topic._id}><Link to={"/replies/"+topic._id}>{topic.name}</Link></li>
+          <li className="list-group-item" key={topic._id}><Link to={"/replies/"+topic._id}>{topic.title}</Link></li>
         );
       });
     }
@@ -32,6 +32,7 @@ export default class Topics extends React.Component {
         <ul className="list-group">
           {topics}
         </ul>
+        <a>New Topic</a>
       </div>
     );
   }
