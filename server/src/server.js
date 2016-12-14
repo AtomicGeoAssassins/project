@@ -21,7 +21,7 @@ var MongoClient = MongoDB.MongoClient;
 var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/db';
 var ResetDatabase = require('./resetdatabase');
-
+var replySchema = require('./schemas/replySchema.json');
 MongoClient.connect(url, function(err, db) {
 
   app.use(bodyParser.text());
@@ -160,6 +160,25 @@ MongoClient.connect(url, function(err, db) {
       if(err) console.log(err);
       res.send(doc.topics[0].replies); //will only find one topic
     });
+  });
+
+  app.post('/forum/replies/:id', validate({body: replySchema}), function(req,res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    if(fromUser) {
+      var reply = {
+        _id: new ObjectID(),
+        content: req.body.content,
+        user_id: new ObjectID(fromUser)
+      };
+      db.collection('boards').upadateOne({ "topics._id": new ObjectID(req.params.id) }, { "topics.replies": { $push: reply } }, function (err,doc) {
+        if(err) console.log(err);
+        res.send(doc.topics[0].replies); //will only find one topic
+      });
+    } else {
+      res.status(422).end();
+      return;
+    }
+    res.status(500).end();
   });
 
   //popular games

@@ -16,13 +16,18 @@ export default class Replies extends React.Component {
     }
   }
 
+  reply(e) {
+    e.preventDefault();
+    prompt("Reply to this topic:","");
+  }
+
   render() {
     var replies;
 
     if(this.state.replies) {
       replies = this.state.replies.map((reply) => {
         return (
-          <li className="list-group-item" >{reply.content}</li>
+          <li className="list-group-item" key={reply._id} >{reply.content}</li>
         );
       });
     }
@@ -32,6 +37,7 @@ export default class Replies extends React.Component {
         <ul className="list-group">
           {replies}
         </ul>
+        <a href="#" onClick={ (e) => this.reply(e) }>New Reply</a>
       </div>
     );
   }
