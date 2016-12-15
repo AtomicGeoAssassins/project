@@ -2,7 +2,6 @@
 var express = require('express');
 // Creates an Express server.
 var app = express();
-var timeout = require('connect-timeout'); //express v4
 //var util = require("./util.js");
 var bodyParser = require('body-parser');
 var request = require('request');
@@ -25,8 +24,6 @@ var ResetDatabase = require('./resetdatabase');
 
 MongoClient.connect(url, function(err, db) {
 
-  app.use(timeout('100s'));
-
   app.use(bodyParser.text());
   app.use(bodyParser.json());
 
@@ -36,11 +33,9 @@ MongoClient.connect(url, function(err, db) {
   app.use('/mongo_express', mongo_express(mongo_express_config));
 
   /**
-  * Get the user ID from a token. Returns -1 (an invalid ID)
-  * if it fails.
-  */
-
-
+   * Get the user ID from a token. Returns -1 (an invalid ID)
+   * if it fails.
+   */
   function getUserIdFromToken(authorizationLine) {
     try {
       // Cut off "Bearer " from the header value.
@@ -72,7 +67,6 @@ MongoClient.connect(url, function(err, db) {
 
   var futurePrice = function (final_price) { return Math.floor(final_price/2); }
 
-  //retrieve a game
   //retrieve a game
   app.get('/game/:gameid', function (req, res) {
     var games = []; //this will hold our games
@@ -134,169 +128,167 @@ MongoClient.connect(url, function(err, db) {
                 var future_price = futurePrice(final_price);
                 extend(game, {original_price: original_price, final_price: final_price,
                   future_price: future_price}); //put them in the root
-                }
-                games.push(game); //add to our running list
               }
-            });
-          } else
-          games.push("error on appid " + item);
-
-          //if this is the last thing we can return
-          if(games.length >= appids.length) {
-            return games;
-          }
-        });
-      });
-    }
-
-    //popular games
-    app.get('/games/pricey', function (req, res) {
-      request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
-        if (!error && query_response.statusCode == 200) {
-          query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
-          query_body.forEach(function (item) {
-            extend(item, { future_price: futurePrice(item.final_price) })
-          });
-          res.send(query_body);
-        }
-      });
-    });
-
-    //popular games
-    app.get('/games/popular', function (req, res) {
-      request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
-        if (!error && query_response.statusCode == 200) {
-          query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
-          query_body.forEach(function (item) {
-            extend(item, { future_price: futurePrice(item.final_price) });
-          });
-          res.send(query_body);
-        }
-      });
-    });
-
-    //retrieve a game
-    app.get('/game/:gameid', function (req, res) {
-      var game = lookupGame(req.params.gameid);
-      res.send(game);
-    });
-
-    //popular games
-    app.get('/games/pricey', function (req, res) {
-      request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
-        if (!error && query_response.statusCode == 200) {
-          query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
-          query_body.forEach(function (item) {
-            extend(item, { future_price: futurePrice(item.final_price) })
-          });
-          res.send(query_body);
-        }
-      });
-    });
-
-    //user show
-    app.get('/user/:id', function (req, res) {
-      var userid = req.params.id;
-      var fromUser = getUserIdFromToken(req.get('Authorization'));
-      // userid is a string. We need it to be a number.
-      // Parameters are always strings.
-      var useridNumber = parseInt(userid, 10);
-      if (fromUser === useridNumber) {
-        // Send response.
-        res.send(extend(readDocument('users',userid),{id: userid}));
-      } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-      }
-    });
-
-    app.put('/user/:id/watchlist/:appid', function (req, res) {
-      var fromUser = getUserIdFromToken(req.get('Authorization'));
-      var useridNumber = parseInt(req.params.id, 10);
-      if(fromUser==useridNumber) {
-        var user = readDocument('users', useridNumber);
-        user.watchList.push(parseInt(req.params.appid));
-        writeDocument('users', user); //rewrite
-        res.send(user); //reply empty status
-      } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-      }
-    });
-
-    app.delete('/user/:id/watchlist/:appid', function (req, res) {
-      var fromUser = getUserIdFromToken(req.get('Authorization'));
-      var useridNumber = parseInt(req.params.id, 10);
-      if(fromUser==useridNumber) {
-        var user = readDocument('users', useridNumber);
-        var appIndex = user.watchList.indexOf(parseInt(req.params.appid));
-        if (appIndex !== -1) {
-          user.watchList.splice(appIndex, 1);
-          writeDocument('users', user);
-        }
-        res.send(user); //reply empty status
-      } else {
-        // 401: Unauthorized request.
-        res.status(401).end();
-      }
-    });
-
-    // Reset database.
-    app.post('/resetdb', function(req, res) {
-      console.log("Resetting database...");
-      // This is a debug route, so don't do any validation.
-      ResetDatabase(db, function() {
-        res.send();
-      });
-    });
-
-    //work in progress
-    app.post('/search', function(req, res){
-      var input = JSON.parse(req.body);
-      if(!input.query){
-        res.status(422).send();
-        return;
-      }
-      console.log(input);
-
-      var games = [];
-      request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
-        if (!error && query_response.statusCode == 200) {
-          query_body = JSON.parse(query_body).applist.apps.app; //parse
-          query_body.forEach(function (item){
-            if(item.name.toUpperCase().includes(input.query.toUpperCase())) {
-              var x = item.appid;
-              games.push(x);
+              games.push(game); //add to our running list
             }
           });
-          var game = new Array(7);
-          for(var j = 0; j < 7; j++){
-            game[j] = games[j];
-            console.log(game[j]);
-          }
-          res.send(game);
-          return;
+        } else
+          games.push("error on appid " + item);
+
+        //if this is the last thing we can return
+        if(games.length >= appids.length) {
+          return games;
         }
       });
     });
+  }
 
-    /**
-    * Translate JSON Schema Validation failures into error 400s.
-    */
-    app.use(function(err, req, res, next) {
-      if (err.name === 'JsonSchemaValidation') {
-        // Set a bad request http response status
-        res.status(400).end();
-      } else {
-        // It's some other sort of error; pass it to next error middleware handler
-        next(err);
+  //popular games
+  app.get('/games/pricey', function (req, res) {
+    request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+      if (!error && query_response.statusCode == 200) {
+        query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+        query_body.forEach(function (item) {
+          extend(item, { future_price: futurePrice(item.final_price) })
+        });
+        res.send(query_body);
       }
     });
-
-    // Starts the server on port 3000!
-    app.listen(3000, function () {
-      console.log('Example app listening on port 3000!');
-    });
-
-
   });
+
+  //popular games
+  app.get('/games/popular', function (req, res) {
+    request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+      if (!error && query_response.statusCode == 200) {
+        query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+        query_body.forEach(function (item) {
+          extend(item, { future_price: futurePrice(item.final_price) });
+        });
+        res.send(query_body);
+      }
+    });
+  });
+
+  //retrieve a game
+  app.get('/game/:gameid', function (req, res) {
+    var game = lookupGame(req.params.gameid);
+    res.send(game);
+  });
+
+  //popular games
+  app.get('/games/pricey', function (req, res) {
+    request('http://store.steampowered.com/api/featured/', function (error, query_response, query_body) {
+      if (!error && query_response.statusCode == 200) {
+        query_body = JSON.parse(query_body).featured_linux; //just grab the linux ones XD
+        query_body.forEach(function (item) {
+          extend(item, { future_price: futurePrice(item.final_price) })
+        });
+        res.send(query_body);
+      }
+    });
+  });
+
+  //user show
+  app.get('/user/:id', function (req, res) {
+    var userid = req.params.id;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // userid is a string. We need it to be a number.
+    // Parameters are always strings.
+    var useridNumber = parseInt(userid, 10);
+    if (fromUser === useridNumber) {
+      // Send response.
+      res.send(extend(readDocument('users',userid),{id: userid}));
+    } else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+  app.put('/user/:id/watchlist/:appid', function (req, res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    var useridNumber = parseInt(req.params.id, 10);
+    if(fromUser==useridNumber) {
+      var user = readDocument('users', useridNumber);
+      user.watchList.push(parseInt(req.params.appid));
+      writeDocument('users', user); //rewrite
+      res.send(user); //reply empty status
+    } else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+  app.delete('/user/:id/watchlist/:appid', function (req, res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    var useridNumber = parseInt(req.params.id, 10);
+    if(fromUser==useridNumber) {
+      var user = readDocument('users', useridNumber);
+      var appIndex = user.watchList.indexOf(parseInt(req.params.appid));
+      if (appIndex !== -1) {
+        user.watchList.splice(appIndex, 1);
+        writeDocument('users', user);
+      }
+      res.send(user); //reply empty status
+    } else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+  // Reset database.
+  app.post('/resetdb', function(req, res) {
+    console.log("Resetting database...");
+    // This is a debug route, so don't do any validation.
+    ResetDatabase(db, function() {
+      res.send();
+    });
+  });
+
+  //work in progress
+  app.post('/search', function(req, res){
+    var input = JSON.parse(req.body);
+    if(!input.query){
+      res.status(422).send();
+      return;
+    }
+    console.log(input);
+
+    var games = [];
+    request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
+      if (!error && query_response.statusCode == 200) {
+        query_body = JSON.parse(query_body).applist.apps.app; //parse
+        query_body.forEach(function (item){
+          if(item.name.toUpperCase().includes(input.query.toUpperCase())) {
+            var x = item.appid;
+            games.push(x);
+          }
+        });
+        var game = new Array(7);
+        for(var j = 0; j < 7; j++){
+          game[j] = games[j];
+          console.log(game[j]);
+        }
+        res.send(game);
+        return;
+      }
+    });
+  });
+
+  /**
+   * Translate JSON Schema Validation failures into error 400s.
+   */
+  app.use(function(err, req, res, next) {
+    if (err.name === 'JsonSchemaValidation') {
+      // Set a bad request http response status
+      res.status(400).end();
+    } else {
+      // It's some other sort of error; pass it to next error middleware handler
+      next(err);
+    }
+  });
+
+  // Starts the server on port 3000!
+  app.listen(3000, function () {
+    console.log('Example app listening on port 3000!');
+  });
+});
