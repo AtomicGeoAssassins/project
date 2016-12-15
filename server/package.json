@@ -13,6 +13,7 @@
     "request": "^2.79.0"
   },
   "devDependencies": {
+    "connect-timeout": "^1.8.0",
     "eslint": "^2.4.0",
     "eslint-plugin-node": "^1.0.0",
     "mongo-express": "^0.33.0",

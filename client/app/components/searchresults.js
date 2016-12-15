@@ -1,6 +1,6 @@
 import React from 'react';
 import GamesTable from './gamesTable';
-import {getPopularGameData, getPriceyGameData, setActiveNavLink, getUserData} from '../server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, getUserData, postSearchGameData} from '../server';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -20,10 +20,6 @@ export default class Home extends React.Component {
       this.setState({ "popularGames": games });
     });
 
-    getPriceyGameData((games) => {
-      this.setState({ "priceyGames": games });
-    });
-
     getUserData("4", (user) => {
       this.setState({"user": user });
     });
@@ -33,8 +29,6 @@ export default class Home extends React.Component {
     return (
     <div>
       <h2>Featured Games</h2>
-      <GamesTable games={this.state.popularGames} user={this.state.user} />
-      <h2>Highest Priced Games</h2>
       <GamesTable games={this.state.priceyGames} user={this.state.user} />
     </div>
     );

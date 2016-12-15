@@ -69,7 +69,7 @@ MongoClient.connect(url, function(err, db) {
 
   var futurePrice = function (final_price) { return Math.floor(final_price/2); }
 
-  //retrieve a game
+  // //retrieve a game
   app.get('/game/:gameid', function (req, res) {
     var games = []; //this will hold our games
     var appids = req.params.gameid.trim().split(',');
@@ -91,12 +91,17 @@ MongoClient.connect(url, function(err, db) {
                 var future_price = futurePrice(final_price);
                 extend(game, {original_price: original_price, final_price: final_price,
                   future_price: future_price}); //put them in the root
+                games.push(game);
+              } else {
+                games.push("error on appid " + item);
               }
-              games.push(game); //add to our running list
+            } else {
+              games.push("error on appid " + item);
             }
           });
-        } else
+        } else {
           games.push("error on appid " + item);
+        }
 
         //if this is the last thing we can return
         if(games.length >= appids.length) {
@@ -107,41 +112,44 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  function lookupGame(gameid){
-    var games = []; //this will hold our games
-    var appids = gameid.trim().split(',');
-    appids.forEach(function (item) { //fyi foreach is not async
-      request('http://store.steampowered.com/api/appdetails/?appids=' + item, function (error, query_response, query_body) {
-        if (!error && query_response.statusCode == 200) {
-          query_body = JSON.parse(query_body); //parse
-
-          //join it all in an array
-          Object.keys(query_body).forEach(function (appid) {
-            var game = query_body[appid];
-            if(game.success === true) {
-              extend(game, { id: appid, appid: appid, name: game.data.name }); //initial data
-
-              //pull out prices
-              if(game.data.price_overview) { //some games are free
-                var original_price = game.data.price_overview.initial;
-                var final_price = game.data.price_overview.final;
-                var future_price = futurePrice(final_price);
-                extend(game, {original_price: original_price, final_price: final_price,
-                  future_price: future_price}); //put them in the root
-              }
-              games.push(game); //add to our running list
-            }
-          });
-        } else
-          games.push("error on appid " + item);
-
-        //if this is the last thing we can return
-        if(games.length >= appids.length) {
-          return games;
-        }
-      });
-    });
-  }
+  // function lookupGame(gameid){
+  //   var games = []; //this will hold our games
+  //   var appids = gameid.trim().split(',');
+  //   appids.forEach(function (item) { //fyi foreach is not async
+  //     request('http://store.steampowered.com/api/appdetails/?appids=' + item, function (error, query_response, query_body) {
+  //       if (!error && query_response.statusCode == 200) {
+  //         query_body = JSON.parse(query_body); //parse
+  //
+  //         //join it all in an array
+  //         Object.keys(query_body).forEach(function (appid) {
+  //           var game = query_body[appid];
+  //           if(game.success === true) {
+  //             extend(game, { id: appid, appid: appid, name: game.data.name }); //initial data
+  //
+  //             //pull out prices
+  //             if(game.data.price_overview) { //some games are free
+  //               var original_price = game.data.price_overview.initial;
+  //               var final_price = game.data.price_overview.final;
+  //               var future_price = futurePrice(final_price);
+  //               extend(game, {original_price: original_price, final_price: final_price,
+  //                 future_price: future_price}); //put them in the root
+  //             }
+  //             games.push(game); //add to our running list
+  //           } else {
+  //             games.push("error on appid " + item);
+  //           }
+  //         });
+  //       } else {
+  //         games.push("error on appid " + item);
+  //       }
+  //
+  //       //if this is the last thing we can return
+  //       if(games.length >= appids.length) {
+  //         return games;
+  //       }
+  //     });
+  //   });
+  // }
 
   app.get('/forum/boards', function (req, res) {
     db.collection('boards').find({}, { title: 1}).toArray(function (err, doc) {
@@ -271,10 +279,10 @@ MongoClient.connect(url, function(err, db) {
   });
 
   //retrieve a game
-  app.get('/game/:gameid', function (req, res) {
-    var game = lookupGame(req.params.gameid);
-    res.send(game);
-  });
+  // app.get('/game/:gameid', function (req, res) {
+  //   var game = lookupGame(req.params.gameid);
+  //   res.send(game);
+  // });
 
   //popular games
   app.get('/games/pricey', function (req, res) {
@@ -346,18 +354,30 @@ MongoClient.connect(url, function(err, db) {
   });
 
   //work in progress
-  app.post('/search/:query', function(req, res){
+  app.post('/search', function(req, res){
+    var input = JSON.parse(req.body);
+    if(!input.query){
+      res.status(422).send();
+      return;
+    }
     var games = [];
     request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
       if (!error && query_response.statusCode == 200) {
         query_body = JSON.parse(query_body).applist.apps.app; //parse
-        query_body.forEach(function (item,index){
-          if(item.name.toUpperCase().includes(req.params.query.toUpperCase())) {
-            var x = { id: item.appid};
+        query_body.forEach(function (item){
+          if(item.name.toUpperCase().includes(input.query.toUpperCase())) {
+            var x = item.appid;
+            console.log(x);
             games.push(x);
           }
         });
+        // var game = new Array(7);
+        // for(var j = 0; j < 7; j++){
+        //   game[j] = games[j];
+        //   console.log(game[j]);
+        // }
         res.send(games);
+        return;
       }
     });
   });

@@ -9,7 +9,7 @@ import Topics from './components/topics';
 import Replies from './components/replies';
 import {hideElement} from './components/util.js';
 import GamesTable from './components/gamesTable';
-import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from './server';
+import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getGameById, getUserData, searchForFeedItems} from './server';
 
 import Favorite from './components/forum/forumTopics/favorite';
 import General from './components/forum/forumTopics/general';
@@ -55,7 +55,7 @@ class SearchResults extends React.Component {
     this.state = {
       loaded: false,
       invalidSearch: false,
-      results: []
+      results: ""
     };
   }
 
@@ -63,10 +63,18 @@ class SearchResults extends React.Component {
     var searchTerm = this.props.searchTerm;
     if (searchTerm !== "") {
       // Search on behalf of user 4.
+
       searchForFeedItems(4, searchTerm, (feedItems) => {
-        this.setState({
-          loaded: true,
-          results: feedItems
+        var games = feedItems;
+        // var games = new Array(feedItems.size);
+        // for(var j = 0; j < games.length; j++){
+        //   games[j] = feedItems[j];
+        // }
+        getGameById(games, (games) => {
+          this.setState({
+            loaded: true,
+            results: games
+          });
         });
       });
     } else {
@@ -74,13 +82,6 @@ class SearchResults extends React.Component {
         invalidSearch: true
       });
     }
-      getPopularGameData((games) => {
-        this.setState({ "popularGames": games });
-      });
-
-      searchForFeedItems((games) => {
-        this.setState({ "priceyGames": games });
-      });
 
       getUserData("4", (user) => {
         this.setState({"user": user });
@@ -95,10 +96,8 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div>
-        <h2>Featured Games</h2>
-        <GamesTable games={this.state.popularGames} user={this.state.user} />
-        <h2>Highest Priced Games</h2>
-        <GamesTable games={this.state.priceyGames} user={this.state.user} />
+        <h2>SearchResults</h2>
+        <GamesTable games={this.state.results} user={this.state.user} />
       </div>
     );
   }
