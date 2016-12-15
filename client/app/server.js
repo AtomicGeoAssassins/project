@@ -196,6 +196,10 @@ export function searchForFeedItems(userID, queryText, cb) {
   });
 }
 
+export function postReply(content, topicid, cb) {
+  sendXHR('POST', '/forum/replies/'+topicid, { content: content},(xhr) => { useCB(xhr,cb) });
+}
+
 export function getUserData(userID, cb) {
   sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) });
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActiveNavLink, getReplies} from '../server';
+import {setActiveNavLink, getReplies, postReply} from '../server';
 import { Router, Link } from 'react-router';
 export default class Replies extends React.Component {
   constructor(props) {
@@ -18,7 +18,10 @@ export default class Replies extends React.Component {
 
   reply(e) {
     e.preventDefault();
-    prompt("Reply to this topic:","");
+    var reply = prompt("Reply to this topic:","");
+    postReply(reply, this.props.params.id, (replies) => {
+      this.setState({replies: replies});
+    });
   }
 
   render() {
@@ -27,7 +30,7 @@ export default class Replies extends React.Component {
     if(this.state.replies) {
       replies = this.state.replies.map((reply) => {
         return (
-          <li className="list-group-item" key={reply._id} >{reply.content}</li>
+          <li className="list-group-item" key={reply._id}>{reply.content}</li>
         );
       });
     }

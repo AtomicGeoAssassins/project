@@ -155,9 +155,15 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  app.get('/forum/replies/:id', function (req,res) {
-    db.collection('boards').findOne({ "topics._id": new ObjectID(req.params.id) }, { "topics.replies": 1 }, function (err,doc) {
+  function getReplies(topicId, cb) {
+    db.collection('boards').findOne({ "topics._id": new ObjectID(topicId) }, { "topics.replies": 1 }, function (err,doc) {
       if(err) console.log(err);
+      cb(err,doc);
+    });
+  }
+
+  app.get('/forum/replies/:id', function (req,res) {
+    getReplies(req.params.id, function (err,doc) {
       res.send(doc.topics[0].replies); //will only find one topic
     });
   });
@@ -168,17 +174,19 @@ MongoClient.connect(url, function(err, db) {
       var reply = {
         _id: new ObjectID(),
         content: req.body.content,
-        user_id: new ObjectID(fromUser)
+        user_id: new ObjectID(fromUser) 
       };
-      db.collection('boards').upadateOne({ "topics._id": new ObjectID(req.params.id) }, { "topics.replies": { $push: reply } }, function (err,doc) {
-        if(err) console.log(err);
-        res.send(doc.topics[0].replies); //will only find one topic
+      db.collection('boards').updateOne({ "topics._id": new ObjectID(req.params.id) }, { $push: { "topics.$.replies": reply } }, function (err,doc) {
+        if(err) {
+          console.log(err);
+        }
+        getReplies(req.params.id, function (err,doc) {
+          res.send(doc.topics[0].replies); //will only find one topic
+        });
       });
     } else {
       res.status(422).end();
-      return;
     }
-    res.status(500).end();
   });
 
   //popular games
