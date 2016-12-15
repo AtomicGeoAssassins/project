@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActiveNavLink, getForumBoards} from '../server';
+import {setActiveNavLink, getForumBoards, postBoard} from '../server';
 import { Router, Link } from 'react-router';
 export default class Boards extends React.Component {
   constructor(props) {
@@ -12,6 +12,14 @@ export default class Boards extends React.Component {
     if(e) {
       this.props.router.push({ pathname: "/topics", board: boardId });
     }
+  }
+
+  newBoard(e) {
+    e.preventDefault();
+    var title = prompt("Board Name","");
+    postBoard(title, (boards) => {
+      this.setState({boards: boards});
+    });
   }
 
   componentDidMount() {
@@ -35,6 +43,7 @@ export default class Boards extends React.Component {
         <ul className="list-group">
           {boards}
         </ul>
+        <a onClick={ (e) => this.newBoard(e)}>New Board</a>
       </div>
     );
   }

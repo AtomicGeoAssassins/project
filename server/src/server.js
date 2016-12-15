@@ -23,6 +23,7 @@ var url = 'mongodb://localhost:27017/db';
 var ResetDatabase = require('./resetdatabase');
 var replySchema = require('./schemas/replySchema.json');
 var topicSchema = require('./schemas/topic.json');
+var boardSchema = require('./schemas/topic.json');
 MongoClient.connect(url, function(err, db) {
 
   app.use(bodyParser.text());
@@ -146,6 +147,29 @@ MongoClient.connect(url, function(err, db) {
     db.collection('boards').find({}, { title: 1}).toArray(function (err, doc) {
       res.send(doc);
     });
+  });
+
+  app.post('/forum/boards', validate({body: boardSchema}), function (req, res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    if(fromUser) {
+      var board = {
+        "_id": new ObjectID(),
+        "title": req.body.title,
+        "topics": [
+        ]
+      };
+      db.collection('boards').insert(board, function (err) {
+        if(err) {
+          console.log(err);
+          res.status(500).end();
+        } else {
+          db.collection('boards').find({}, { title: 1}).toArray(function (err, doc) {
+            res.send(doc);
+          });
+        }
+      });
+    } else
+      res.status(422).end();
   });
 
   function getTopics(boardId, cb) {

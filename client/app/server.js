@@ -204,6 +204,10 @@ export function postTopic(title,boardid, cb) {
   sendXHR('POST', '/forum/topics/'+boardid, { title: title},(xhr) => { useCB(xhr,cb) });
 }
 
+export function postBoard(title, cb) {
+  sendXHR('POST', '/forum/boards',{ title: title},(xhr) => { useCB(xhr,cb) });
+}
+
 export function getUserData(userID, cb) {
   sendXHR('GET', '/user/'+userID, undefined, (xhr) => { useCB(xhr,cb) });
 }
