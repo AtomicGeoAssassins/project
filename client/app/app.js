@@ -4,6 +4,9 @@ import Home from './components/home';
 import Support from './components/support';
 import Navbar from './components/navbar';
 import Forum from './components/forum/forum';
+import Boards from './components/boards';
+import Topics from './components/topics';
+import Replies from './components/replies';
 import {hideElement} from './components/util.js';
 import GamesTable from './components/gamesTable';
 import {getPopularGameData, getPriceyGameData, setActiveNavLink, adjustPrice, getUserData, searchForFeedItems} from './server';
@@ -127,27 +130,16 @@ ReactDOM.render((
       <IndexRoute component={Home} />
       <Route path="about" component={About} />
       <Route path="support" component={Support}/>
-      <Route path="forum" component={Forum}/>
       <Route path="home" component={Home} />
       <Route path="myProfile" component={MyProfile} />
       <Route path="games" component={Games} />
 
-      <Route path="favorite" component={Favorite} />
-      <Route path="general" component={General} />
-      <Route path="offtopic" component={OffTopic} />
-      <Route path="predictions" component={Predictions} />
-      <Route path="price" component={Price} />
-      <Route path="forumsupport" component={ForumSupport} />
+      <Route path="boards" component={Boards} />
+      <Route path="topics/:id" component={Topics} />
+      <Route path="replies/:id" component={Replies} />
+
       <Route path="search" component={SearchResultsPage} />
 
     </Route>
   </Router>
 ),document.getElementById('main-content'));
-
-//ReactDOM.render((
-  //<Navbar />
-//),document.getElementById('navbar'));
-
-//ReactDOM.render((
-  //<Searchbar />
-//),document.getElementById('searchbar'));

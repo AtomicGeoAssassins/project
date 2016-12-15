@@ -32,10 +32,10 @@ export default class GamesTable extends React.Component {
       appid = parseInt(appid);
       if(user.watchList.indexOf(appid) == -1) { //is not watching game
         //render link to watch it
-        return (<a href="#" onClick={ () => { watchGame(user.id,appid,() => { this.refresh();})}}>Watch Game</a>);
+        return (<a href="#" onClick={ (e) => { e.preventDefault(); watchGame(user.id,appid,() => { this.refresh();})}}>Watch Game</a>);
       } else {
         //render link to unwatch it
-        return (<a href="#" onClick={ () => { unwatchGame(user.id,appid,() => { this.refresh();})}}>Unwatch Game</a>);
+        return (<a href="#" onClick={ (e) => { e.preventDefault(); unwatchGame(user.id,appid,() => { this.refresh();})}}>Unwatch Game</a>);
       }
     };
 

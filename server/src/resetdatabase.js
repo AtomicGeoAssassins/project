@@ -9,25 +9,13 @@ var initialData = {
       "title": "general",
       "topics": [
         {
+          "_id": new ObjectID(),
           "title": "alpacas are smelly",
           "replies": [
             {
+              "_id": new ObjectID(),
               "content": "i agree",
-              "_id": new ObjectID(4)
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "favorite",
-      "topics": [
-        {
-          "title": "alpacas are smelly",
-          "replies": [
-            {
-              "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
@@ -37,58 +25,18 @@ var initialData = {
       "title": "offtopic",
       "topics": [
         {
+          "_id": new ObjectID(),
           "title": "alpacas are smelly",
           "replies": [
             {
+              "_id": new ObjectID(),
               "content": "i agree",
-              "_id": new ObjectID(4)
+              "user_id": new ObjectID(4)
             }
           ]
         }
       ]
-    },
-    {
-      "title": "predictions",
-      "topics": [
-        {
-          "title": "alpacas are smelly",
-          "replies": [
-            {
-              "content": "i agree",
-              "_id": new ObjectID(4)
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "price",
-      "topics": [
-        {
-          "title": "alpacas are smelly",
-          "replies": [
-            {
-              "content": "i agree",
-              "_id": new ObjectID(4)
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "support",
-      "topics": [
-        {
-          "title": "alpacas are smelly",
-          "replies": [
-            {
-              "content": "i agree",
-              "_id": new ObjectID(4)
-            }
-          ]
-        }
-      ]
-    },
+    } 
   ],
   "users":{
     "1":
