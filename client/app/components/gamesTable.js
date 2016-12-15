@@ -18,7 +18,7 @@ export default class GamesTable extends React.Component {
       });
   }
 
-  refresh() { 
+  refresh() {
     //get latest
     getUserData("4", (user) => {
       this.setState({"user": user });
@@ -42,6 +42,9 @@ export default class GamesTable extends React.Component {
     if(this.props.games) {
       watchList = (
         this.props.games.map((game,i) => {
+          if(typeof(game) != "object"){
+            return;
+          }
           return (
             <tr key={parseInt(game.id)}>
               <td>{game.name}</td>
