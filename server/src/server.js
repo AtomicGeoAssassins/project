@@ -257,8 +257,6 @@ MongoClient.connect(url, function(err, db) {
       res.status(422).send();
       return;
     }
-    console.log(input);
-
     var games = [];
     request('http://api.steampowered.com/ISteamApps/GetAppList/v0001/', function (error, query_response, query_body) {
       if (!error && query_response.statusCode == 200) {
@@ -266,15 +264,16 @@ MongoClient.connect(url, function(err, db) {
         query_body.forEach(function (item){
           if(item.name.toUpperCase().includes(input.query.toUpperCase())) {
             var x = item.appid;
+            console.log(x);
             games.push(x);
           }
         });
-        var game = new Array(7);
-        for(var j = 0; j < 7; j++){
-          game[j] = games[j];
-          console.log(game[j]);
-        }
-        res.send(game);
+        // var game = new Array(7);
+        // for(var j = 0; j < 7; j++){
+        //   game[j] = games[j];
+        //   console.log(game[j]);
+        // }
+        res.send(games);
         return;
       }
     });

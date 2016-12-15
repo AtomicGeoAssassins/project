@@ -62,10 +62,11 @@ class SearchResults extends React.Component {
       // Search on behalf of user 4.
 
       searchForFeedItems(4, searchTerm, (feedItems) => {
-        var games = new Array(7);
-        for(var j = 0; j < games.length; j++){
-          games[j] = feedItems[j];
-        }
+        var games = feedItems;
+        // var games = new Array(feedItems.size);
+        // for(var j = 0; j < games.length; j++){
+        //   games[j] = feedItems[j];
+        // }
         getGameById(games, (games) => {
           this.setState({
             loaded: true,
