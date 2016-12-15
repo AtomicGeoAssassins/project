@@ -22,6 +22,7 @@ var ObjectID = MongoDB.ObjectID;
 var url = 'mongodb://localhost:27017/db';
 var ResetDatabase = require('./resetdatabase');
 var replySchema = require('./schemas/replySchema.json');
+var topicSchema = require('./schemas/topic.json');
 MongoClient.connect(url, function(err, db) {
 
   app.use(bodyParser.text());
@@ -147,16 +148,46 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
+  function getTopics(boardId, cb) {
+    db.collection('boards').findOne({_id: new ObjectID(boardId) }, {topics: 1}, function (err,doc) {
+      if(err) console.log(err);
+      cb(err,doc);
+    });
+  }
+
   app.get('/forum/topics/:id', function (req,res) {
-    db.collection('boards').findOne({_id: new ObjectID(req.params.id) }, {topics: 1}, function (err,doc) {
+    getTopics(req.params.id, function (err,doc) {
       if(doc) {
         res.send(doc.topics);
       } else res.status(500).end();
     });
   });
 
+  app.post('/forum/topics/:id', validate({body: topicSchema}), function (req,res) {
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    if(fromUser) {
+      var topic = {
+        "_id": new ObjectID(),
+        "title": req.body.title,
+        "replies": [
+        ]
+      };
+      db.collection('boards').updateOne({_id: new ObjectID(req.params.id)}, { $push: { topics: topic } }, function (err) {
+        if(err) {
+          console.log(err);
+          res.status(500).end();
+        } else {
+          getTopics(req.params.id, function (err,doc) {
+            res.send(doc.topics);
+          });
+        }
+      });
+    } else
+      res.status(422).end();
+  });
+
   function getReplies(topicId, cb) {
-    db.collection('boards').findOne({ "topics._id": new ObjectID(topicId) }, { "topics.replies": 1 }, function (err,doc) {
+    db.collection('boards').findOne({ "topics._id": new ObjectID(topicId) }, { "topics.$.replies": 1 }, function (err,doc) {
       if(err) console.log(err);
       cb(err,doc);
     });

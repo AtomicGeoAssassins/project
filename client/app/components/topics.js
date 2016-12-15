@@ -1,5 +1,5 @@
 import React from 'react';
-import {setActiveNavLink, getTopics} from '../server';
+import {setActiveNavLink, getTopics, postTopic} from '../server';
 import { Router, Link } from 'react-router';
 export default class Topics extends React.Component {
   constructor(props) {
@@ -14,6 +14,14 @@ export default class Topics extends React.Component {
         this.setState({topics: topics});
       });
     }
+  }
+
+  newTopic(e) {
+    e.preventDefault();
+    var title = prompt("Topic Name","");
+    postTopic(title, this.props.params.id, (topics) => {
+      this.setState({topics: topics});
+    });
   }
 
   render() {
@@ -32,7 +40,7 @@ export default class Topics extends React.Component {
         <ul className="list-group">
           {topics}
         </ul>
-        <a>New Topic</a>
+        <a onClick={(e) => this.newTopic(e)}>New Topic</a>
       </div>
     );
   }
