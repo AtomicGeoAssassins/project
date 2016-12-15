@@ -95,8 +95,9 @@ MongoClient.connect(url, function(err, db) {
               games.push(game); //add to our running list
             }
           });
-        } else
+        } else {
           games.push("error on appid " + item);
+        }
 
         //if this is the last thing we can return
         if(games.length >= appids.length) {
